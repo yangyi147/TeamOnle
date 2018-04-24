@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.Edu_CourseDao">
+<resultMap type="com.bean.Edu_Course" id="functionMap">
+<id column="course_id" property="course_id"/>
+<result column="course_name" property="course_name"/>
+<result column="is_avaliable" property="is_avaliable"/>
+<result column="add_time" property="add_time"/>
+<result column="SOURCE_PRICE" property="source_prlce"/>
+<result column="CURRENT_PRICE" property="current_price"/>
+<result column="title" property="title"/>
+<result column="context" property="context"/>
+<result column="lession_num" property="lession_num"/>
+<result column="logo" property="logo"/>
+<result column="update_time" property="update_time"/>
+<result column="page_buycount" property="page_buycount"/>
+<result column="PAGE_VIEWCOUNT" property="page_vlewcount"/>
+<result column="end_time" property="end_time"/>
+<result column="losetype" property="losetype"/>
+<result column="lose_time" property="lose_time"/>
+<result column="sequence" property="course_gross_income"/>
+<association property="subject" column="subject_id" select="com.mapper.Sys_SubjectDao.getSubjectById"></association>
+</resultMap>
+<!-- List<Edu_Course>getAllEnd_Course(Map map); 
+SELECT * from edu_course WHERE course_name LIKE '%学习%' AND is_avaliable =1 and update_time > '2015-04-27 00:00:00' and update_time< '2015-12-27 00:00:00'
+-->
+<select id="getAllEnd_Course" resultMap="functionMap">
+SELECT * from edu_course 
+
+<where>
+ <if test="name!=null and name.trim().length>0">
+ and course_name like '%${name}%'
+ </if>
+ <if test="ztid!=null and ztid>0">
+ and IS_AVALIABLE =#{ztid}
+ </if>
+ <if test="zyid!=null and zyid>0">
+ and SUBJECT_ID =#{zyid}
+ </if>
+  <if test="stattim!=null">
+ and UPDATE_TIME > #{stattim}
+ </if>
+   <if test="endtime!=null">
+ and UPDATE_TIME &lt; #{endtime}
+ </if>
+</where>
+
+</select>
+</mapper>
