@@ -24,7 +24,7 @@ public class Sys_UserServiceImpl implements Sys_UserService {
 	public Set<String> getUserByUserName(String name) {
 		Sys_User userByName = userService.getUserByName(name);
 		Set<String> str=new HashSet<>();
-		str.add(userByName.getLOGIN_NAME());
+		str.add(userByName.getLogin_name());
 		return str;
 	}
 

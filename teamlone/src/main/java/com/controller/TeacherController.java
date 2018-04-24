@@ -27,6 +27,7 @@ import com.util.JsonUtils;
 @Controller
 @RequestMapping("/admin")
 public class TeacherController {
+	
 	@Autowired
 	private SubjectsService subjectService;
 	@Autowired

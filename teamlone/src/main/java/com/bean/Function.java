@@ -3,54 +3,55 @@ package com.bean;
 import java.util.Date;
 
 public class Function {
-	private  int FUNCTION_ID;
-	private  int PARENT_ID;
-	private String FUNCTION_NAME;
-	private String FUNCTION_URL;
-	private int  FUNCTION_TYPE;
-	private Date  CREATE_TIME;
-	private int SORT;
-	public int getFUNCTION_ID() {
-		return FUNCTION_ID;
+	private  int  function_id;
+	private  int  parent_id;
+	private String  function_name;
+	private String function_url;
+	private int  function_type;
+	private Date   create_time;
+	private int sort;
+	public int getFunction_id() {
+		return function_id;
 	}
-	public void setFUNCTION_ID(int fUNCTION_ID) {
-		FUNCTION_ID = fUNCTION_ID;
+	public void setFunction_id(int function_id) {
+		this.function_id = function_id;
 	}
-	public int getPARENT_ID() {
-		return PARENT_ID;
+	public int getParent_id() {
+		return parent_id;
 	}
-	public void setPARENT_ID(int pARENT_ID) {
-		PARENT_ID = pARENT_ID;
+	public void setParent_id(int parent_id) {
+		this.parent_id = parent_id;
 	}
-	public String getFUNCTION_NAME() {
-		return FUNCTION_NAME;
+	public String getFunction_name() {
+		return function_name;
 	}
-	public void setFUNCTION_NAME(String fUNCTION_NAME) {
-		FUNCTION_NAME = fUNCTION_NAME;
+	public void setFunction_name(String function_name) {
+		this.function_name = function_name;
 	}
-	public String getFUNCTION_URL() {
-		return FUNCTION_URL;
+	public String getFunction_url() {
+		return function_url;
 	}
-	public void setFUNCTION_URL(String fUNCTION_URL) {
-		FUNCTION_URL = fUNCTION_URL;
+	public void setFunction_url(String function_url) {
+		this.function_url = function_url;
 	}
-	public int getFUNCTION_TYPE() {
-		return FUNCTION_TYPE;
+	public int getFunction_type() {
+		return function_type;
 	}
-	public void setFUNCTION_TYPE(int fUNCTION_TYPE) {
-		FUNCTION_TYPE = fUNCTION_TYPE;
+	public void setFunction_type(int function_type) {
+		this.function_type = function_type;
 	}
-	
-	public int getSORT() {
-		return SORT;
+	public Date getCreate_time() {
+		return create_time;
 	}
-	public void setSORT(int sORT) {
-		SORT = sORT;
+	public void setCreate_time(Date create_time) {
+		this.create_time = create_time;
 	}
-	@Override
-	public String toString() {
-		return "Function [FUNCTION_ID=" + FUNCTION_ID + ", PARENT_ID=" + PARENT_ID + ", FUNCTION_NAME=" + FUNCTION_NAME
-				+ ", FUNCTION_URL=" + FUNCTION_URL + ", FUNCTION_TYPE=" + FUNCTION_TYPE + ", CREATE_TIME=" + CREATE_TIME
-				+ ", SORT=" + SORT + "]";
+	public int getSort() {
+		return sort;
 	}
+	public void setSort(int sort) {
+		this.sort = sort;
+	}
+
+
 }
