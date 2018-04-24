@@ -37,7 +37,7 @@ function fun(a) {
             shadeClose: true,  
             //回调函数  
             yes: function(index, layero){  
-            	window.location.href='/admin/delTe/'+a;  
+            	window.location.href='/admin/delCo/'+a;  
             },  
             btn2: function(index, layero){  
             },  
@@ -46,7 +46,7 @@ function fun(a) {
     });   
 } 
 function find(){
-	document.forms[0].action="/admin/teacher";
+	document.forms[0].action="/admin/comment";
 	document.forms[0].submit();
 }
 </script>
@@ -58,21 +58,20 @@ function find(){
 				<blockquote class="layui-elem-quote news_search">
 					<div class="layui-inline">
 						<div class="layui-input-inline">
-							<input value="${qname}" name="qname" id="qname"
-								placeholder="请输入姓名" class="layui-input search_input"
+							<input value="${qemail}" name="qemail" id="qemail"
+								placeholder="请输入邮箱" class="layui-input search_input"
 								type="text">
 						</div>
 						<div class="layui-input-inline">
-							<input value="${qtype}" name="qtype" id="qtype"
-								placeholder="请输入关资历" class="layui-input search_input"
+							<input value="${qname}" name="qname" id="qname"
+								placeholder="请输入评论内容" class="layui-input search_input"
 								type="text">
 						</div>
 						<div class="layui-inline">
-							<select name="th_name" class="layui-select" id="sel">
+							<select name="qtype" class="layui-select" id="sel">
 								<option value="">请选状态</option>
-								<option value="首席讲师">首席讲师</option>
-								<option value="高级讲师">高级讲师</option>
-								<option value="普通讲师">普通讲师</option>
+								<option value="1">文章</option>
+								<option value="2">课程</option>
 							</select>
 						</div>
 						<div class="layui-input-inline">
@@ -84,7 +83,7 @@ function find(){
 							<div class="layui-input-inline">
 				<label class="layui-inline">结束时间:</label>
 				<div class="layui-input-inline">
-					<input class="Wdate layui-input " type="text" onClick="WdatePicker()" name="stopdate" value="${startdate}">
+					<input class="Wdate layui-input " type="text" onClick="WdatePicker()" name="stopdate" value="${stopdate}">
 				</div>
 						</div>
 						<a class="layui-btn search_btn" onclick="find()">查询</a>
@@ -104,32 +103,29 @@ function find(){
 								<tr>
 									<th><input type="checkbox" id="selected-all"></th>
 									<th>ID</th>
-									<th>等级</th>
-									<th>简介</th>
-									<th>资历</th>
-									<th>简介</th>
-									<th>添加时间</th>
-									<th>排序</th>
+									<th>邮箱</th>
+									<th>评论内容</th>
+									<th>类型</th>
+									<th>点赞</th>
+									<th>回复</th>
+									<th>创建时间</th>
 									<th>删除</th>
-									<th>修改</th>
 								</tr>
 								<c:forEach items="${tc.list}" var="p" varStatus="stea">
 									<tr>
 										<td><input type="checkbox"></td>
 										<th>${stea.index+1 }</th>
-										<th>${p.name}</th>
-										<th>${p.th_name}</th>
-										<th width="200px">${p.education}</th>
-										<th width="400px">${p.career}</th>
-										<th><fmt:formatDate value="${p.create_time}"
+										<th>${p.users_id.email}</th>
+										<th width="400px">${p.content}</th>
+										<th >${p.type}</th>
+										<th >${p.praise_count}</th>
+										<th >${p.reply_count}</th>
+										<th><fmt:formatDate value="${p.addtime}"
 												pattern="yyyy/MM/dd HH:mm" /></th>
-										<th>${p.sort}</th>
-										<th><button class="layui-btn layui-btn-sm" type="button"
-												onclick="fun(${p.id})">
+											<th><button class="layui-btn layui-btn-sm" type="button"
+												onclick="fun(${p.comment_id})">
 												<i class="layui-icon">&#xe640;</i>
 											</button></th>
-										<th><a href="/admin/teacher/getById/${p.id}"
-											class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe642;</i></a></th>
 									</tr>
 								</c:forEach>
 							</thead>
@@ -188,15 +184,15 @@ function find(){
 							//得到了当前页，用于向服务端请求对应数据
 							var curr = obj.curr;
 							if(!first) {
-								document.forms[0].action="/admin/teacher?page="+curr;
+								document.forms[0].action="/admin/comment?page="+curr;
 								document.forms[0].submit();
 							}
 						}
 					});
 	 });
-	   var a='${qtname}';
+	   var a='${qtype}';
 	   if(a!=''){
-		   $("#sel").val('${qtname}');
+		   $("#sel").val('${qtype}');
 		   }
 	   
 </script>

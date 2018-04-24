@@ -19,7 +19,7 @@ public class Users {
       private int  msg_num;
       private int  sys_msg_num;
       private Date last_system_time;
-	public int getUser_id() {
+	  public int getUser_id() {
 		return user_id;
 	}
 	public void setUser_id(int user_id) {
@@ -124,7 +124,4 @@ public class Users {
 				+ ", banner_url=" + banner_url + ", msg_num=" + msg_num + ", sys_msg_num=" + sys_msg_num
 				+ ", last_system_time=" + last_system_time + "]";
 	}
-	
-	
-      
 }

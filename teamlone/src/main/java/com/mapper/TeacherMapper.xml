@@ -20,14 +20,20 @@
 <select id="getListAll"  resultMap="TeacherMap" parameterType="java.util.Map">
 select * from edu_teacher  
 <where>
-<if test="qname!=null">
+<if test="qname!=null and qname!=''">
 and name like '%${qname}%'
 </if>
-<if test="qtype!=null">
+<if test="qtype!=null and qtype!=''">
 and education like '%${qtype}%'
 </if>
-<if test="qtname!=null">
+<if test="qtname!=null and qtname!=''">
 and th_name =#{qtname}
+</if>
+<if test="startdate!=null and startdate!=''">
+and create_time &gt;#{startdate}
+</if>
+<if test="stopdate!=null and stopdate!=''">
+and create_time &lt;#{stopdate}
 </if>
 </where>
 </select>

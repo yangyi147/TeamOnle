@@ -143,7 +143,7 @@
 				</ul>
 			<div class="layui-tab-content" style="min-height: 150px; ">
 				<div class="layui-tab-item layui-show">
-					<iframe class="larry-iframe" scrolling="no"  data-id='0' src="main.html"  ></iframe>
+					<iframe class="larry-iframe" scrolling="no"  data-id='0' src=""  ></iframe>
 				</div>
 			</div>
 		</div>

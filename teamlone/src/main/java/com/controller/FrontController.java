@@ -11,11 +11,11 @@ import com.bean.Images;
 import com.service.ImagesService;
 
 @Controller
-@RequestMapping("/front/Images")
-public class ImagesController {
+@RequestMapping("/front")
+public class FrontController {
 	@Autowired
 	private ImagesService imagesService;
-	@RequestMapping("/listAll")
+	@RequestMapping("/listImg")
 	public ModelAndView list(){
 		List<Images> websiteImagesList=imagesService.getListAll();
 		ModelAndView md=new ModelAndView();
@@ -23,5 +23,4 @@ public class ImagesController {
 		md.setViewName("web/index/index");
 		return md;
 	}
-
 }

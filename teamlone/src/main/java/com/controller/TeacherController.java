@@ -58,11 +58,18 @@ public class TeacherController {
 		return md;
 	}
 	private Map inerMap(HttpServletRequest request){
-		Map map=new HashMap<>();
+	 String startdate=request.getParameter("startdate");
+	 String  stopdate=request.getParameter("stopdate");
+	 Map map=new HashMap<>();
 	 String  id=request.getParameter("tid");
 	 String pname=request.getParameter("qname");
 	 String ptype=request.getParameter("qtype");
 	 String  ptname=request.getParameter("th_name");
+	 System.out.println(startdate);
+	 System.out.println(stopdate);
+	 System.out.println(id);
+	 System.out.println(pname);
+	 System.out.println(ptype);
 	 System.out.println(ptname);
 		request.setAttribute("qtype", ptype);
 		if (id==null) {
@@ -74,6 +81,10 @@ public class TeacherController {
 		request.setAttribute("qtname", ptname);
 		map.put("qname", pname);
 		map.put("qtname", ptname);
+		map.put("startdate", startdate);
+		map.put("stopdate", stopdate);
+		request.setAttribute("startdate", startdate);
+		request.setAttribute("stopdate", stopdate);
 		return map;
 	}
 	

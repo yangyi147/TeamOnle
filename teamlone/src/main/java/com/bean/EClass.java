@@ -43,6 +43,5 @@ public class EClass {
 		return "Edu_Class [id=" + id + ", cname=" + cname + ", cyear=" + cyear + ", update_time=" + update_time
 				+ ", status=" + status + "]";
 	}
-     
       
 }
