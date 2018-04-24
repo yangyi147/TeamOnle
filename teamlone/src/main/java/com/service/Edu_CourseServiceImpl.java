@@ -16,8 +16,8 @@ public class Edu_CourseServiceImpl implements Edu_CourseService {
 
 	@Autowired
 	Edu_CourseDao courseDao;
-	@Value("${zh.pagesize}")
-	private int pagesize;
+//	@Value("${zh.pagesize}")
+	private int pagesize=7;
 	@Override
 	public PageInfo<Edu_Course> getAllEnd_Course(Map map,int page) {
 		PageHelper.startPage(page,pagesize);
