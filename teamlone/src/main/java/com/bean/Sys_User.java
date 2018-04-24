@@ -4,106 +4,106 @@ import java.util.Date;
 
 public class Sys_User {
 	
-	private int USER_ID;
+	private int  usre_id;
 
-	private String LOGIN_NAME;
+	private String login_name;
 	
-	private String LOGIN_PWD;
+	private String login_pwd;
 	
-	private String USER_NAME;
+	private String user_name;
 	
-	private  int  STATUS;
+	private  int  status;
 	
-	private Date LAST_LOGIN_TIME;
+	private Date last_login_time;
 	
-	private String LAST_LOGIN_IP;
+	private String last_login_ip;
 	
-	private Date CREATE_TIME;
+	private Date rcreat_time;
 	
-	private String EMAIL;
+	private String email;
 	
-	private String TEL;
+	private String tel;
 	
 	private Sys_Role roel;
 
-	public int getUSER_ID() {
-		return USER_ID;
+	public int getUsre_id() {
+		return usre_id;
 	}
 
-	public void setUSER_ID(int uSER_ID) {
-		USER_ID = uSER_ID;
+	public void setUsre_id(int usre_id) {
+		this.usre_id = usre_id;
 	}
 
-	public String getLOGIN_NAME() {
-		return LOGIN_NAME;
+	public String getLogin_name() {
+		return login_name;
 	}
 
-	public void setLOGIN_NAME(String lOGIN_NAME) {
-		LOGIN_NAME = lOGIN_NAME;
+	public void setLogin_name(String login_name) {
+		this.login_name = login_name;
 	}
 
-	public String getLOGIN_PWD() {
-		return LOGIN_PWD;
+	public String getLogin_pwd() {
+		return login_pwd;
 	}
 
-	public void setLOGIN_PWD(String lOGIN_PWD) {
-		LOGIN_PWD = lOGIN_PWD;
+	public void setLogin_pwd(String login_pwd) {
+		this.login_pwd = login_pwd;
 	}
 
-	public String getUSER_NAME() {
-		return USER_NAME;
+	public String getUser_name() {
+		return user_name;
 	}
 
-	public void setUSER_NAME(String uSER_NAME) {
-		USER_NAME = uSER_NAME;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 
-	public int getSTATUS() {
-		return STATUS;
+	public int getStatus() {
+		return status;
 	}
 
-	public void setSTATUS(int sTATUS) {
-		STATUS = sTATUS;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
-	public Date getLAST_LOGIN_TIME() {
-		return LAST_LOGIN_TIME;
+	public Date getLast_login_time() {
+		return last_login_time;
 	}
 
-	public void setLAST_LOGIN_TIME(Date lAST_LOGIN_TIME) {
-		LAST_LOGIN_TIME = lAST_LOGIN_TIME;
+	public void setLast_login_time(Date last_login_time) {
+		this.last_login_time = last_login_time;
 	}
 
-	public String getLAST_LOGIN_IP() {
-		return LAST_LOGIN_IP;
+	public String getLast_login_ip() {
+		return last_login_ip;
 	}
 
-	public void setLAST_LOGIN_IP(String lAST_LOGIN_IP) {
-		LAST_LOGIN_IP = lAST_LOGIN_IP;
+	public void setLast_login_ip(String last_login_ip) {
+		this.last_login_ip = last_login_ip;
 	}
 
-	public Date getCREATE_TIME() {
-		return CREATE_TIME;
+	public Date getRcreat_time() {
+		return rcreat_time;
 	}
 
-	public void setCREATE_TIME(Date cREATE_TIME) {
-		CREATE_TIME = cREATE_TIME;
+	public void setRcreat_time(Date rcreat_time) {
+		this.rcreat_time = rcreat_time;
 	}
 
-	public String getEMAIL() {
-		return EMAIL;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEMAIL(String eMAIL) {
-		EMAIL = eMAIL;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getTEL() {
-		return TEL;
+	public String getTel() {
+		return tel;
 	}
 
-	public void setTEL(String tEL) {
-		TEL = tEL;
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 
 	public Sys_Role getRoel() {
@@ -116,13 +116,11 @@ public class Sys_User {
 
 	@Override
 	public String toString() {
-		return "Sys_User [USER_ID=" + USER_ID + ", LOGIN_NAME=" + LOGIN_NAME + ", LOGIN_PWD=" + LOGIN_PWD
-				+ ", USER_NAME=" + USER_NAME + ", STATUS=" + STATUS + ", LAST_LOGIN_TIME=" + LAST_LOGIN_TIME
-				+ ", LAST_LOGIN_IP=" + LAST_LOGIN_IP + ", CREATE_TIME=" + CREATE_TIME + ", EMAIL=" + EMAIL + ", TEL="
-				+ TEL + ", roel=" + roel + "]";
+		return "Sys_User [usre_id=" + usre_id + ", login_name=" + login_name + ", login_pwd=" + login_pwd
+				+ ", user_name=" + user_name + ", status=" + status + ", last_login_time=" + last_login_time
+				+ ", last_login_ip=" + last_login_ip + ", rcreat_time=" + rcreat_time + ", email=" + email + ", tel="
+				+ tel + ", roel=" + roel + "]";
 	}
-	
-	
 	
 	
 	
