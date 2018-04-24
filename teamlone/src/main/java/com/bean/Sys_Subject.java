@@ -4,56 +4,56 @@ import java.util.Date;
 
 public class Sys_Subject {
 	
-	private int SUBJECT_ID;
+	private int  id;
 	
-	private String SUBJECT_NAME;
+	private String name;
 	
-	private int STATUS;
+	private int status;
 	
-	private Date CREATE_TIME;
+	private Date create_time;
 	
-	private int PARENT_ID;
+	private int pId;
 	
 	private int sort;
 
-	public int getSUBJECT_ID() {
-		return SUBJECT_ID;
+	public int getId() {
+		return id;
 	}
 
-	public void setSUBJECT_ID(int sUBJECT_ID) {
-		SUBJECT_ID = sUBJECT_ID;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getSUBJECT_NAME() {
-		return SUBJECT_NAME;
+	public String getName() {
+		return name;
 	}
 
-	public void setSUBJECT_NAME(String sUBJECT_NAME) {
-		SUBJECT_NAME = sUBJECT_NAME;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public int getSTATUS() {
-		return STATUS;
+	public int getStatus() {
+		return status;
 	}
 
-	public void setSTATUS(int sTATUS) {
-		STATUS = sTATUS;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
-	public Date getCREATE_TIME() {
-		return CREATE_TIME;
+	public Date getCreate_time() {
+		return create_time;
 	}
 
-	public void setCREATE_TIME(Date cREATE_TIME) {
-		CREATE_TIME = cREATE_TIME;
+	public void setCreate_time(Date create_time) {
+		this.create_time = create_time;
 	}
 
-	public int getPARENT_ID() {
-		return PARENT_ID;
+	public int getpId() {
+		return pId;
 	}
 
-	public void setPARENT_ID(int pARENT_ID) {
-		PARENT_ID = pARENT_ID;
+	public void setpId(int pId) {
+		this.pId = pId;
 	}
 
 	public int getSort() {
@@ -66,9 +66,10 @@ public class Sys_Subject {
 
 	@Override
 	public String toString() {
-		return "Sys_Subject [SUBJECT_ID=" + SUBJECT_ID + ", SUBJECT_NAME=" + SUBJECT_NAME + ", STATUS=" + STATUS
-				+ ", CREATE_TIME=" + CREATE_TIME + ", PARENT_ID=" + PARENT_ID + ", sort=" + sort + "]";
+		return "Sys_Subject [id=" + id + ", name=" + name + ", status=" + status + ", create_time=" + create_time
+				+ ", pId=" + pId + ", sort=" + sort + "]";
 	}
+
 	
 	
 

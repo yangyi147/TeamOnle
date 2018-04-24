@@ -26,6 +26,7 @@ public class ProfessionalController {
 			System.out.println(sys_Subject);
 		}
 		String json=JsonUtils.objectToJson(allSubjict);
+		System.out.println("json:"+json);
 		request.setAttribute("allper", json);
 		return "/admin/Professional";
 	}
