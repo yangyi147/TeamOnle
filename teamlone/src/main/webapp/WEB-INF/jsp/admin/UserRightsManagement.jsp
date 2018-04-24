@@ -8,12 +8,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="/onlinelearn/static/common/ztree/css/zTreeStyle.css" type="text/css">
-	<link rel="stylesheet" href="/onlinelearn/css/bootstrap.css" />
-	<script type="text/javascript" src="/onlinelearn/js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="/onlinelearn/js/bootstrap.js"></script>
-	<script type="text/javascript" src="/onlinelearn/inc/js/ztree/js/jquery.ztree.core.min.js"></script>
-	<script type="text/javascript" src="/onlinelearn/inc/js/ztree/js/jquery.ztree.excheck.js"></script>
+	<link rel="stylesheet" href="/static/common/ztree/css/zTreeStyle.css" type="text/css">
+	<link rel="stylesheet" href="/css/bootstrap.css" />
+	<script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/inc/js/ztree/js/jquery.ztree.core.min.js"></script>
+	<script type="text/javascript" src="/inc/js/ztree/js/jquery.ztree.excheck.js"></script>
 	<style>
 		#ztree{
 			width: 100%;
