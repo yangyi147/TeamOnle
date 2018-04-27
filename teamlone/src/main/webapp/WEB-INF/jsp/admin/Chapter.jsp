@@ -13,12 +13,12 @@
 		<link rel="stylesheet" type="text/css" href="/css/personal.css" media="all">
 		<script src="/js/jquery-3.0.0.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="/js/bootstrap.js"></script>
-<!-- 		<script type="text/javascript" charset="utf-8" src="/static/utf8-jsp/ueditor.config.js"></script> -->
-<!--         <script type="text/javascript" charset="utf-8" src="/static/utf8-jsp/ueditor.all.min.js"></script> -->
+ 		<script type="text/javascript" charset="utf-8" src="/static/utf8-jsp/ueditor.config.js"></script> 
+         <script type="text/javascript" charset="utf-8" src="/static/utf8-jsp/ueditor.all.min.js"></script> 
         <script type="text/JavaScript" src="/static/My97DatePicker/WdatePicker.js"></script> 
 		<style>
            .oh{
-             width: 100px
+             width: 150px
            }
            .th{
              width: 200px
@@ -28,12 +28,23 @@
            }
         </style>
         <script type="text/javascript">
-        function test() {
-        	var parentNode= $("#pNode").val();
-        	alert(parentNode)
+        function edit() {
+        	var pNode= $("#pNode").val();
+        	$.ajax({
+        		type:"post",
+        		url:"/admin/course/getcourse",
+        		async:true,
+        		data:{"id":pNode},
+        		dataType:"json",
+        		success:function  (data) {
+        			$(".cn").remove();
+        			for (i=0;i<data.length;i++) {
+        			$("#cn").append("<option class='cn' value='"+data[i].id+"'>"+data[i].name+"</option>");
+        			}
+        		}
+        	});
 		}
         $(function () {
-        	alert(${id});
 			$("#pNode").val(${id});
 		})
         </script>
@@ -43,14 +54,14 @@
   <div class="form-group">
     <label for="inputPassword" class="col-sm-2 control-label">专业管理</label>
     <div class="col-sm-10">
-    <select class="form-control oh " id="pNode" >
+    <select class="form-control oh " id="pNode" onchange="edit()" >
      <c:forEach items="${allSubjict }" var="subject">
   <option value="${subject.id }" >${subject.name }</option>
      </c:forEach>
 </select>
-     <select class="form-control oh " >
+     <select class="form-control oh " id="cn" >
      <c:forEach items="${allSubjictByparent_Id }" var="allSubjictByparent_Id">
-  <option value="${allSubjictByparent_Id.id }">${allSubjictByparent_Id.name }</option>
+  <option class="cn" value="${allSubjictByparent_Id.id }">${allSubjictByparent_Id.name }</option>
      </c:forEach>
 </select>
     </div>
@@ -58,79 +69,79 @@
   <div class="form-group">
     <label for="inputPassword" class="col-sm-2 control-label">状态</label>
     <div class="col-sm-10">
-
-             <option value="1" selected="selected">上架</option> 
-
+    <select>
+            <option value="1" >上架</option> 
+             <option value="2" >下架</option> 
+</select>
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword" class="col-sm-2 control-label">总课时</label>
     <div class="col-sm-10">
-      <input type="number" class="form-control th" id="inputPassword" >
+      <input type="number" class="form-control th"  value="${courseByID.lession_num }" >
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword" class="col-sm-2 control-label">课程原价格</label>
     <div class="col-sm-10">
-      <input type="number" class="form-control th" id="inputPassword" >
+      <input type="number" class="form-control th" value="${courseByID.source_prlce }"  >
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword" class="col-sm-2 control-label">课程销售价格</label>
     <div class="col-sm-10">
-      <input type="number" class="form-control th" id="inputPassword" >
+      <input type="number" class="form-control th" value="${courseByID.current_price }"  >
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword" class="col-sm-2 control-label">有效期类型</label>
     <div class="col-sm-10">
-                <select class="form-control th" style="width: 80px">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
+                <select class="form-control oh" >
+  <option>按天数</option>
+  <option>截至日期</option>
 </select>
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword" class="col-sm-2 control-label">按天数</label>
     <div class="col-sm-10">
-      <input type="number" class="form-control th" id="inputPassword" >
+      <input type="number" class="form-control oh" style="width: 150px" value="${courseByID.lose_time }"  >
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword" class="col-sm-2 control-label">截至时间</label>
     <div class="col-sm-10">
-      <input type="date" class="form-control th" id="inputPassword" >
+      <input type="date" class="form-control th"  >
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword" class="col-sm-2 control-label">添加教师</label>
     <div class="col-sm-10">
-                      <select class="form-control oh" style="width: 80px">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
+       <select class="form-control oh" style="width: 150px">
+       <c:forEach items="${allTeacher }" var="teacher">
+  <option value="${teacher.id }">${teacher.name }</option>
+       </c:forEach>
 </select>
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword" class="col-sm-2 control-label">课程简介</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control th" id="inputPassword" >
+      <input type="text" class="form-control th" style="width: 600px" value="${courseByID.title }" >
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword" class="col-sm-2 control-label">课程图片</label>
     <div class="col-sm-10">
-      <!--<input type="image" src=""  >-->
-      <input type="file" class="btn" style="height: 33px;" >
+      <input type="image" src="${courseByID.logo }" style="width: 300px;height: 200px;" >
+      <input type="file" value="上传图片"/>
     </div>
   </div>
     <div class="form-group">
-    <label for="inputPassword" class="col-sm-2 control-label">课程图片</label>
-    <div class="col-sm-10">
-      <!--<input type="image" src=""  >-->
-      <script type="text/plain" name="ceshi" id="editor"></script>
+    <label for="inputPassword" class="col-sm-2 control-label"></label>
+    <div class="col-sm-8">
+      
+      <script type="text/plain" name="ceshi" id="editor" >${courseByID.context }</script>
     </div>
   </div>
 </form>
@@ -138,6 +149,7 @@
 </body>
    <script type="text/javascript">
     var ue = UE.getEditor("editor");
+  
    </script>
 
 </html>

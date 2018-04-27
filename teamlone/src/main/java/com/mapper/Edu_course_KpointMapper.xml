@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.Edu_course_KpointDao">
+<select id="getAllEdu_course_KpointByCourseID" resultType="com.bean.Edu_course_Kpoint">
+SELECT kpoint_id id,name,parent_id pId from edu_course_kpoint WHERE TEACHER_ID in( SELECT id FROM edu_teacher WHERE subject_id=(SELECT subject_id FROM edu_course WHERE course_id=#{id}) )
+</select>
+</mapper>

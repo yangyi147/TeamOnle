@@ -6,43 +6,54 @@ import java.util.Date;
 
 public class Edu_Course {
 	
-	private int course_id;
+	private int course_id; //课程编号
 	
-	private String course_name;
+	private String course_name; //课程名称
 	
-	private int is_avaliable;
+	private int is_avaliable;//1正常2删除
 	
-	private Sys_Subject subject;
+	private Sys_Subject subject; //课程专业id
 	
-	private Date add_time;
+	private String subject_link;//课程专业链
 	
-	private double source_prlce;
+	private Date add_time;//添加时间
 	
-	private double current_price;
+	private double source_prlce;//课程原价（只显示）
 	
-	private String title;
+	private double current_price;//课程销售价格（实际支付价格）设置为0则可以免费观看
 	
-	private String context;
+	private String title;//课程简介
 	
-	private int lession_num;
+	private String context;//课程详情
 	
-	private  String logo;
+	private int lession_num;//总课时
 	
-	private Date update_time;
+	private  String logo;//图片路径
 	
-	private int page_buycount;
+	private Date update_time;//最后更新时间
 	
-	private int page_vlewcount;
+	private int page_buycount;//销售数量
 	
-	private Date end_time;
+	private int page_vlewcount;//浏览数量
 	
-	private int losetype;
+	private Date end_time;//有效的结束时间
+	
+	private int losetype;//有效期类型，0：到期时间，1：按天数
 	        
-	private String lose_time;
+	private String lose_time;//有效期商品订单过期时间点
 	
-	private int sequence;
+	private int sequence;//序列
 	
-	private double course_gross_income;
+	private double course_gross_income;//该课程总共卖了多少钱
+   
+	
+	public String getSubject_link() {
+		return subject_link;
+	}
+
+	public void setSubject_link(String subject_link) {
+		this.subject_link = subject_link;
+	}
 
 	public int getCourse_id() {
 		return course_id;

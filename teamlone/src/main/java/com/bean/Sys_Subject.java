@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Sys_Subject {
 	
+
 	private int  id;
 	private String name;
 	private int status;
@@ -47,5 +48,11 @@ public class Sys_Subject {
 		this.sort = sort;
 	}
 
+	
+	@Override
+	public String toString() {
+		return "Sys_Subject [id=" + id + ", name=" + name + ", status=" + status + ", create_time=" + create_time
+				+ ", pId=" + pId + ", sort=" + sort + "]";
+	}
 
 }

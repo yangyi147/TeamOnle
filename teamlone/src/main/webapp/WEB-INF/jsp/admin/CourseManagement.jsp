@@ -125,7 +125,7 @@
 										<th>购买后的${course.lose_time }天</th>
 										</c:if>
 										
-										<th><input type="button" class="btn btn-default in" onclick="chapter(${course.subject.id },${course.is_avaliable })" value="章节管理" style="background: black; color: white;" /><input type="button" class="btn btn-default in" value="修改" style="background: black; color: white;" /><input type="button" class="btn btn-default in" value="删除" style="background: black; color: white;" /></th>
+										<th><input type="button" class="btn btn-default in" onclick="chapte(${course.course_id })"  value="章节管理" style="background: black; color: white;" /><input type="button" class="btn btn-default in" onclick="chapter(${course.subject.id },${course.is_avaliable },${course.course_id })" value="修改" style="background: black; color: white;" /><input type="button" class="btn btn-default in" value="删除" style="background: black; color: white;" /></th>
 										</tr>
 											</c:forEach>
 										</tbody>
@@ -163,9 +163,8 @@
 					});
 	 });
 	   
-	   function chapter(id,aid) {
-		   alert("12");
-		window.location.href="/admin/course/chapter/"+id+"/"+aid;
+	   function chapter(id,aid,cid) {
+		window.location.href="/admin/course/chapter/"+id+"/"+aid+"/"+cid;
 	}
 	   $(function () {
 		$("#ztid").val(${map.ztid});
@@ -178,6 +177,9 @@
 			$("#stattime").val("");
 			$("#endtime").val("");
 			
+	}
+	   function chapte(id) {
+		window.location.href="/admin/course/chapte/"+id;
 	}
 	   
 </script>

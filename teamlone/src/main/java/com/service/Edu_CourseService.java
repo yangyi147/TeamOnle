@@ -8,6 +8,14 @@ import com.github.pagehelper.PageInfo;
 
 public interface Edu_CourseService {
 	
+	
 	PageInfo<Edu_Course>getAllEnd_Course(Map map,int page);
+	
+	/**
+	 * @param id
+	 * @return
+	 * 
+	 */
+	Edu_Course getCourseByID(int id);
 
 }

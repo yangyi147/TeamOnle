@@ -47,4 +47,8 @@ SELECT * from edu_course
 </where>
 
 </select>
+
+<select id="getCourseByID" resultMap="functionMap">
+SELECT * FROM edu_course WHERE course_id=#{id}
+</select>
 </mapper>
