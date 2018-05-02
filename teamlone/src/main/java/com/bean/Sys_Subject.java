@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Sys_Subject {
 	
-	private int  subject_id;
+	private int  id;
 	
 	private String subject_name;
 	
@@ -12,26 +12,16 @@ public class Sys_Subject {
 	
 	private Date create_time;
 	
-	private int parent_id;
+	private int pId;
 	
 	private int sort;
 
-
-
-	public int getSort() {
-		return sort;
+	public int getId() {
+		return id;
 	}
 
-	public void setSort(int sort) {
-		this.sort = sort;
-	}
-
-	public int getSubject_id() {
-		return subject_id;
-	}
-
-	public void setSubject_id(int subject_id) {
-		this.subject_id = subject_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getSubject_name() {
@@ -58,18 +48,27 @@ public class Sys_Subject {
 		this.create_time = create_time;
 	}
 
-	public int getParent_id() {
-		return parent_id;
+	public int getpId() {
+		return pId;
 	}
 
-	public void setParent_id(int parent_id) {
-		this.parent_id = parent_id;
+	public void setpId(int pId) {
+		this.pId = pId;
+	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 
 	@Override
 	public String toString() {
-		return "Sys_Subject [subject_id=" + subject_id + ", subject_name=" + subject_name + ", status=" + status
-				+ ", create_time=" + create_time + ", parent_id=" + parent_id + ", sort=" + sort + "]";
+		return "Sys_Subject [id=" + id + ", subject_name=" + subject_name + ", status=" + status + ", create_time="
+				+ create_time + ", pId=" + pId + ", sort=" + sort + "]";
 	}
+
 
 }
