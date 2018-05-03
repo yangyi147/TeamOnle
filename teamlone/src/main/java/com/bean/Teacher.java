@@ -14,7 +14,7 @@ public class Teacher {
 	private int status;
 	private Date create_time;
 	private Date update_time;
-	private Subjects subject_id;
+	private Sys_Subject subject_id;
 	private int sort;
 	public int getId() {
 		return id;
@@ -82,17 +82,18 @@ public class Teacher {
 	public void setUpdate_time(Date update_time) {
 		this.update_time = update_time;
 	}
-	public Subjects getSubject_id() {
-		return subject_id;
-	}
-	public void setSubject_id(Subjects subject_id) {
-		this.subject_id = subject_id;
-	}
+
 	public int getSort() {
 		return sort;
 	}
 	public void setSort(int sort) {
 		this.sort = sort;
+	}
+	public Sys_Subject getSubject_id() {
+		return subject_id;
+	}
+	public void setSubject_id(Sys_Subject subject_id) {
+		this.subject_id = subject_id;
 	}
 	@Override
 	public String toString() {
@@ -101,5 +102,4 @@ public class Teacher {
 				+ status + ", create_time=" + create_time + ", update_time=" + update_time + ", subject_id="
 				+ subject_id + ", sort=" + sort + "]";
 	}
-
 }

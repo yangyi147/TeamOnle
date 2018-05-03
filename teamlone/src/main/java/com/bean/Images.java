@@ -5,7 +5,7 @@ public class Images {
 	private String image_url;
 	private String link_address;
 	private String title;
-	private int type_id;
+	private Imges_type t_id;
 	private int series_number;
 	private String preview_url;
 	private String color;
@@ -34,12 +34,6 @@ public class Images {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public int getType_id() {
-		return type_id;
-	}
-	public void setType_id(int type_id) {
-		this.type_id = type_id;
-	}
 	public int getSeries_number() {
 		return series_number;
 	}
@@ -64,7 +58,11 @@ public class Images {
 	public void setDercribe(String dercribe) {
 		this.dercribe = dercribe;
 	}
-	
-	
+	public Imges_type getT_id() {
+		return t_id;
+	}
+	public void setT_id(Imges_type t_id) {
+		this.t_id = t_id;
+	}
 
 }

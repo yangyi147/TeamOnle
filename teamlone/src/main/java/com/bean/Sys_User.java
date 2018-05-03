@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Sys_User {
 	
-	private int  usre_id;
+	private int  user_id;
 
 	private String login_name;
 	
@@ -26,12 +26,13 @@ public class Sys_User {
 	
 	private Sys_Role roel;
 
-	public int getUsre_id() {
-		return usre_id;
+
+	public int getUser_id() {
+		return user_id;
 	}
 
-	public void setUsre_id(int usre_id) {
-		this.usre_id = usre_id;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getLogin_name() {
@@ -116,11 +117,13 @@ public class Sys_User {
 
 	@Override
 	public String toString() {
-		return "Sys_User [usre_id=" + usre_id + ", login_name=" + login_name + ", login_pwd=" + login_pwd
+		return "Sys_User [user_id=" + user_id + ", login_name=" + login_name + ", login_pwd=" + login_pwd
 				+ ", user_name=" + user_name + ", status=" + status + ", last_login_time=" + last_login_time
 				+ ", last_login_ip=" + last_login_ip + ", rcreat_time=" + rcreat_time + ", email=" + email + ", tel="
 				+ tel + ", roel=" + roel + "]";
 	}
+
+
 	
 	
 	

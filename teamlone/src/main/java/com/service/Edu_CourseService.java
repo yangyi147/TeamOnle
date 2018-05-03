@@ -7,7 +7,15 @@ import com.bean.Edu_Course;
 import com.github.pagehelper.PageInfo;
 
 public interface Edu_CourseService {
+	List<Edu_Course> getTeaByID(int id);
 	
 	PageInfo<Edu_Course>getAllEnd_Course(Map map,int page);
+	
+	/**
+	 * @param id
+	 * @return
+	 * 
+	 */
+	Edu_Course getCourseByID(int id);
 
 }

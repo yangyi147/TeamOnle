@@ -25,10 +25,10 @@
 		 <em>Management System</em>
 	</h1>
 	<div class="layui-user-icon larry-login">
-		 <input type="text" placeholder="账号" name="LOGIN_NAME" value="admin" class="login_txtbx"/>
+		 <input type="text" placeholder="账号" name="login_name" value="admin" class="login_txtbx"/>
 	</div>
 	<div class="layui-pwd-icon larry-login">
-		 <input type="password" placeholder="密码" name="LOGIN_PWD" value="123456" class="login_txtbx"/>
+		 <input type="password" placeholder="密码" name="login_pwd" value="123456" class="login_txtbx"/>
 	</div>
     <div class="layui-val-icon larry-login">
     	<div class="layui-code-box">

@@ -17,7 +17,7 @@
 			<!-- 图片位置 -->
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-					<c:forEach var="image" items="${websiteImagesList}" varStatus="status">
+					<c:forEach var="image" items="${websiteImagesList.list}" varStatus="status">
 						<div class="swiper-slide" style="background: <c:if test="${empty image.color}">#EF550F;</c:if><c:if test="${!empty image.color}">${image.color}</c:if>;">
 							<a target="_blank" href="<c:if test='${image.link_address!=null&&image.link_address!=""}'>${image.link_address}</c:if>">
 								<img class="imgload" src="${image.image_url}" alt="${image.title}">
@@ -68,6 +68,7 @@
 				<div>
 					<article class="comm-course-list">
 						<ul class="of" id="bna">
+						<li>122</li>
 						</ul>
 						<div class="clear"></div>
 					</article>
@@ -90,31 +91,31 @@
 						</header>
 						<div class="i-question-list">
 							<ul id="iQuestion">
-								<c:forEach items="${commentList}" var="comment" varStatus="status">
+								<c:forEach items="${commentList.list}" var="comment" varStatus="status">
 									<li>
 										<section class="i-q-l-wrap">
 											<div class="u-face">
-												<c:if test="${empty comment.picImg }">
+												<c:if test="${empty comment.users_id.pic_img}">
 													<img width="50" height="50" class="picImg" src="${ctx }/static/inxweb/img/avatar-boy.gif" xsrc="${ctx }/static/inxweb/img/avatar-boy.gif">
 												</c:if>
-												<c:if test="${not empty comment.picImg }">
-													<img width="50" height="50" class="picImg" src="${ctx }/static/inxweb/img/avatar-boy.gif" xsrc="${ctx }${comment.picImg }">
+												<c:if test="${not empty comment.users_id.pic_img}">
+													<img width="50" height="50" class="picImg" src="${ctx }/static/inxweb/img/avatar-boy.gif" xsrc="${ctx }${comment.users_id.pic_img }">
 												</c:if>
 											</div>
 											<section class="hLh20 of">
-												<span class="fr"><tt class="c-ccc f-fG"><fmt:formatDate value="${comment.addTime }" pattern="yyyy/MM/dd HH:mm" /></tt></span> 
+												<span class="fr"><tt class="c-ccc f-fG"><fmt:formatDate value="${comment.addtime }" pattern="yyyy/MM/dd HH:mm" /></tt></span> 
 												<span class="fsize16 c-666">
-												 	<c:if test="${empty comment.userName }">
-														${comment.email}
+												 	<c:if test="${empty comment.users_id.show_name}">
+														${comment.users_id.email}
 													</c:if>
-													<c:if test="${not empty comment.userName }">
-														${comment.userName}
+													<c:if test="${not empty comment.users_id.show_name }">
+														${comment.users_id.show_name}
 													</c:if>
 												</span> 
 											    <span class="fsize14 c-999 ml5 f-fA">评论课程：</span>
 											</section>
 											<section class="hLh20 of mt10">
-												<a class="c-master fsize14" href="${ctx}/front/couinfo/${comment.courseId}">《${comment.courseName}》</a>
+												<a class="c-master fsize14" href="${ctx}/front/couinfo/${comment.others_id.course_id}">《${comment.others_id.course_name}》</a>
 											</section>
 											<section class="i-q-txt">
 												<p>
@@ -158,21 +159,21 @@
 				<div>
 					<article class="i-teacher-list">
 						<ul class="of">
-							<c:forEach items="${teacherList}" var="teacher" varStatus="index">
+							<c:forEach items="${teacherList.list}" var="teacher" varStatus="index">
 								<li>
 									<section class="i-teach-wrap">
 										<div class="i-teach-pic">
-											<a href="${ctx}/front/teacher/${teacher.id}" title="${teacher.name}">
-												<c:if test="${not empty teacher.picPath&&teacher.picPath!=''}">
-													<img alt="${teacher.name}" src="${ctx}/static/inxweb/img/default-tea-img.gif" xsrc="<%=staticImage%>${teacher.picPath}">
+											<a href="${ctx}/front/teacher/listone/${teacher.id}" title="${teacher.name}">
+												<c:if test="${not empty teacher.pic_path&&teacher.pic_path!=''}">
+													<img alt="${teacher.name}" src="${ctx}/static/inxweb/img/default-tea-img.gif" xsrc="<%=staticImage%>${teacher.pic_path}">
 												</c:if>
-												<c:if test="${empty teacher.picPath||teacher.picPath==''}">
+												<c:if test="${empty teacher.pic_path||teacher.pic_path==''}">
 													<img alt="${teacher.name}" src="${ctx}/static/inxweb/img/default-img.gif" xsrc="${ctx}/static/inxweb/img/default-img.gif">
 												</c:if>
 											</a>
 										</div>
 										<div class="mt10 hLh30 txtOf tac">
-											<a href="${ctx}/front/teacher/${teacher.id}" title="${teacher.name}" class="fsize18 c-666">${teacher.name}</a>
+											<a href="${ctx}/front/teacher/listone/${teacher.id}" title="${teacher.name}" class="fsize18 c-666">${teacher.name}</a>
 										</div>
 										<div class="hLh30 txtOf tac">
 											<span class="fsize14 c-999">${teacher.education }</span>
@@ -187,7 +188,7 @@
 						<div class="clear"></div>
 					</article>
 					<section class="tac pt20">
-						<a href="${ctx}/front/teacherlist" title="全部讲师" class="comm-btn c-btn-2">全部讲师</a>
+						<a href="${ctx}/front/teacher/list" title="全部讲师" class="comm-btn c-btn-2">全部讲师</a>
 					</section>
 				</div>
 			</section>
@@ -205,9 +206,8 @@
 			$(".boutiqueCourse").click();//网校课程-精品课程
 			huanyihuan();
 			studentDynamic();//学生动态
-
-
-
+			
+			
 			var uri = window.location.search;
 			var val = "msg";
 			var re = new RegExp("" + val + "=([^&?]*)", "ig");

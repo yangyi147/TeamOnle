@@ -19,11 +19,30 @@ public class Edu_CourseServiceImpl implements Edu_CourseService {
 //	@Value("${zh.pagesize}")
 	private int pagesize=7;
 	@Override
-	public PageInfo<Edu_Course> getAllEnd_Course(Map map,int page) {
+	
+	/**
+	 * @param map
+	 * @param page
+	 * @return
+	 * 按条件分页分页
+	 */public PageInfo<Edu_Course> getAllEnd_Course(Map map,int page) {
 		PageHelper.startPage(page,pagesize);
 		List<Edu_Course> allEnd_Course = courseDao.getAllEnd_Course(map);
 		PageInfo<Edu_Course> p=new PageInfo<Edu_Course>(allEnd_Course);
 		return p;
+	}
+	@Override
+	/**
+	 *按照id查询课程
+	 */
+	public Edu_Course getCourseByID(int id) {
+		// TODO Auto-generated method stub
+		return courseDao.getCourseByID(id);
+	}
+	@Override
+	public List<Edu_Course> getTeaByID(int id) {
+		// TODO Auto-generated method stub
+		return courseDao.getTeaByID(id);
 	}
 
 }

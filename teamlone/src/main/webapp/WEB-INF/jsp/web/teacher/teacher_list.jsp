@@ -14,9 +14,9 @@
 					<span class="c-333">全部讲师</span>
 				</h2>
 				<section class="c-tab-title">
-					<a id="subjectAll" title="全部" href="${ctx }/front/teacherlist">全部</a>
+					<a id="subjectAll" title="全部" href="${ctx }/front/teacher/list">全部</a>
 					<c:forEach var="teacher" items="${th.list }">
-						<a id="${teacher.id}" title="${teacher.name }" href="javascript:void(0)" onclick="submitForm(${teacher.id})">${teacher.name }</a>
+						<a id="${teacher.id}" title="${teacher.name }" href="${ctx }/front/teacher/listone/${teacher.id}">${teacher.name }</a>
 					</c:forEach>
 				</section>
 			</header>
@@ -68,7 +68,7 @@
 				<div>
 					<form action="${ctx }/front/teacher/list" method="post" id="searchForm">
 						<input type="hidden" name="page" id="pageCurrentPage" value="1">
-						<input type="hidden" name="queryTeacher.subjectId" id="" value="${subjectId }">
+						<input type="hidden" name="queryTeacher.subjectId" id="" value="">
 					</form>
 					<jsp:include page="/WEB-INF/jsp/common/front_page.jsp"></jsp:include>
 				</div>

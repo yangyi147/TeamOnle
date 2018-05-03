@@ -47,7 +47,6 @@
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
 	  		<filter>
       <filter-name>shiroFilter</filter-name>
       <filter-class>org.springframework.web.filter.DelegatingFilterProxy </filter-class>

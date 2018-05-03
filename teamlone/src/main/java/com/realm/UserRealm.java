@@ -35,8 +35,8 @@ public class UserRealm extends AuthorizingRealm{
 		authorizationInfo.setRoles(userService.getUserByUserName(name));
 		System.out.println("==========================================================================");
 		//封装角色对应的权限集合
-		System.out.println("doGetAuthorizationInfo:"+fuctionService.getAllFuctionByRoleId(users.getUsre_id()));
-		authorizationInfo.setStringPermissions(fuctionService.getAllFuctionByRoleId(users.getUsre_id()));
+		System.out.println("doGetAuthorizationInfo:"+fuctionService.getAllFuctionByRoleId(users.getUser_id()));
+		authorizationInfo.setStringPermissions(fuctionService.getAllFuctionByRoleId(users.getUser_id()));
 		return authorizationInfo;
 	}
 
@@ -46,7 +46,7 @@ public class UserRealm extends AuthorizingRealm{
 		System.out.println("uname:"+uname);
 	    Sys_User user=new Sys_User();
 		user.setLogin_name(uname);
-		System.err.println("user.uanme:"+user.getLogin_name());
+		System.out.println("user.uanme:"+user.getLogin_name());
 		Sys_User uSerById = userService.getUserByName(uname);
 		System.out.println("uSerById:"+uSerById);
 		if (uSerById==null) {
@@ -54,7 +54,7 @@ public class UserRealm extends AuthorizingRealm{
 		}
 		System.out.println(1246454);
 		ByteSource slat=new ByteSource.Util().bytes(uname);
-		SimpleAuthenticationInfo info=new SimpleAuthenticationInfo(uname,uSerById.getLogin_name(),slat,getName());
+		SimpleAuthenticationInfo info=new SimpleAuthenticationInfo(uname,uSerById.getLogin_pwd(),slat,getName());
 		return info;
 	}
 

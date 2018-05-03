@@ -27,7 +27,7 @@ public class Sys_LoginController {
 	public String login(Sys_User user,HttpSession session) {
 		UsernamePasswordToken token=new UsernamePasswordToken(user.getLogin_name(),user.getLogin_pwd());
 		Sys_User userByName = userService.getUserByName(user.getLogin_name());
-		session.setAttribute("userByName", userByName.getUsre_id());
+		session.setAttribute("userByName", userByName.getUser_id());
 		Subject subject=SecurityUtils.getSubject();
 		if (!subject.isAuthenticated()) {
 			try {

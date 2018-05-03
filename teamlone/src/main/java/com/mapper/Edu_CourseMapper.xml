@@ -47,4 +47,10 @@ SELECT * from edu_course
 </where>
 
 </select>
+<select id="getCourseByID" resultMap="functionMap">
+SELECT * FROM edu_course WHERE course_id=#{id}
+</select>
+<select id="getTeaByID" resultMap="functionMap">
+SELECT * FROM edu_course WHERE course_id in( select course_id from edu_course_teacher where teacher_id=#{id})
+</select>
 </mapper>

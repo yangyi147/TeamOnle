@@ -4,9 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,20 +14,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.bean.Subjects;
+import com.bean.Sys_Subject;
 import com.bean.Teacher;
 import com.github.pagehelper.PageInfo;
 import com.service.SubjectsService;
+import com.service.Sys_Subjectervice;
 import com.service.TeacherService;
 import com.util.InfoNode;
 import com.util.JsonUtils;
 @Controller
 @RequestMapping("/admin")
 public class TeacherController {
-	
 	@Autowired
-	private SubjectsService subjectService;
+	private Sys_Subjectervice sys_Subjectervice;
 	@Autowired
 	private TeacherService teacherService;
 	@RequestMapping("/teacher")
@@ -52,7 +50,7 @@ public class TeacherController {
 		ModelAndView md=new ModelAndView();
 		md.addObject("te", teacher);
 		System.out.println(teacher);
-		List<Subjects> su=subjectService.getListAll();
+		List<Sys_Subject> su=sys_Subjectervice.getAllSubjict();
 		String json=JsonUtils.objectToJson(su);
 		md.addObject("su", json);
 		md.setViewName("/admin/teacher/upteacher");
@@ -88,8 +86,6 @@ public class TeacherController {
 		request.setAttribute("stopdate", stopdate);
 		return map;
 	}
-	
-	
 	 @RequestMapping(value="/upload",method=RequestMethod.POST)
      public String upload(HttpServletRequest request,
             @RequestParam("file") MultipartFile file,Teacher teacher,@RequestParam("sd")int sd) throws Exception {
@@ -98,7 +94,7 @@ public class TeacherController {
             String path = request.getRealPath("/images/");
             String filename = file.getOriginalFilename();
             File filepath = new File(path,filename);
-   		    Subjects sub=subjectService.getById(sd);
+            Sys_Subject  sub= (Sys_Subject) sys_Subjectervice.getSubjectById(sd);
             teacher.setPic_path("/images/"+filename);
             teacher.setSubject_id(sub);
             teacher.setCreate_time(day);
@@ -139,12 +135,11 @@ public class TeacherController {
 	@RequestMapping(value="/upTer")
 	   public String upTer(Teacher teacher,@RequestParam("sd")int sd) throws Exception {
         	Date day=new Date();    
-   		    Subjects sub=subjectService.getById(sd);
+   		    Sys_Subject sub=(Sys_Subject) sys_Subjectervice.getSubjectById(sd);
    		    teacher.setPic_path("/images/"+teacher.getPic_path());
             teacher.setSubject_id(sub);
             teacher.setUpdate_time(day);
             teacherService.upTer(teacher);
 			return "redirect:/admin/teacher";
 	 }
-	
 }

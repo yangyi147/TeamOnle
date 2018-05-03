@@ -7,7 +7,7 @@ public class Comment {
 	private int p_comment_id;
 	private  String  content;
 	private Date  addtime;
-	private int other_id;
+	private Edu_Course others_id;
 	private int praise_count;
 	private int reply_count;
 	private int type;
@@ -41,12 +41,6 @@ public class Comment {
 	public void setAddtime(Date addtime) {
 		this.addtime = addtime;
 	}
-	public int getOther_id() {
-		return other_id;
-	}
-	public void setOther_id(int other_id) {
-		this.other_id = other_id;
-	}
 	public int getPraise_count() {
 		return praise_count;
 	}
@@ -65,10 +59,16 @@ public class Comment {
 	public void setType(int type) {
 		this.type = type;
 	}
+	public Edu_Course getOthers_id() {
+		return others_id;
+	}
+	public void setOthers_id(Edu_Course others_id) {
+		this.others_id = others_id;
+	}
 	@Override
 	public String toString() {
 		return "Comment [comment_id=" + comment_id + ", users_id=" + users_id + ", p_comment_id=" + p_comment_id
-				+ ", content=" + content + ", addtime=" + addtime + ", other_id=" + other_id + ", praise_count="
+				+ ", content=" + content + ", addtime=" + addtime + ", others_id=" + others_id + ", praise_count="
 				+ praise_count + ", reply_count=" + reply_count + ", type=" + type + "]";
 	}
 }
