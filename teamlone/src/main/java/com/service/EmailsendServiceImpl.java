@@ -1,6 +1,7 @@
 package com.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,9 @@ public class EmailsendServiceImpl implements EmailsendDao{
 	}
 
 	@Override
-	public List<Emailsend> getlistAll() {
+	public List<Emailsend> getlistAll(Map map) {
 		// TODO Auto-generated method stub
-		List<Emailsend> list = emailDao.getlistAll();
+		List<Emailsend> list = emailDao.getlistAll(map);
 		return list;
 	}
 

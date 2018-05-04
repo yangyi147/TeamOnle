@@ -29,4 +29,5 @@
     <!-- 上传图片最大大小5M-->   
     <property name="maxUploadSize" value="5242440"></property>    
 </bean>
+   
 </beans>

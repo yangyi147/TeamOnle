@@ -20,9 +20,10 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<Users> getlistAll() {
+	public List<Users> getlistAll(Map map) {
 		// TODO Auto-generated method stub
-		List<Users> list = userdao.getlistAll();
+		List<Users> list = userdao.getlistAll(map);
+	
 		return list;
 	}
 
@@ -46,12 +47,7 @@ public class UserServiceImpl implements UserService{
 		userdao.updateid(users);;
 	}
 
-	@Override
-	public List<Users> getselect(Map map) {
-		// TODO Auto-generated method stub
-		List<Users> list = userdao.getselect(map);
-		return list;
-	}
+
 
 
 

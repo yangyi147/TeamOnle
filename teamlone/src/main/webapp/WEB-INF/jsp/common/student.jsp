@@ -18,7 +18,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="format-detection" content="telephone=no">
-
+ 
 		<link rel="stylesheet" type="text/css" href="/comm/layui/css/layui.css" media="all">
 		<link rel="stylesheet" type="text/css" href="/comm/bootstrap/css/bootstrap.css" media="all">
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
@@ -28,7 +28,8 @@
 		<script src="/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/js/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/js/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
-
+		<script type="text/javascript" src="/js/My97DatePicker/WdatePicker.js"></script>
+       
 	</head>
 	<script type="text/javascript">
 		$("myModal").modal("hide");
@@ -54,15 +55,15 @@
 							<form class="form-horizontal">
 								<input type="hidden" name="user_id" id="user_id" >
 								<div class="form-group" style="height: 50px;">
-									<label for="passwords" class="col-sm-2 control-label">密码：</label>
+									<label for="passwords" class="col-sm-2 control-label" >密码：</label>
 									<div class="col-sm-10">
-										<input type="email" class="form-control" id="passwords" name="passwords">
+										<input type="email" class="form-control" id="passwords" name="passwords"style="width: 300px">
 									</div>
 								</div>
 								<div class="form-group" style="height:50px;">
-									<label for="password" class="col-sm-2 control-label">确认密码：</label>
+									<label for="password" class="col-sm-2 control-label" >确认密码：</label>
 									<div class="col-sm-10">
-										<input type="password" class="form-control" id="password" name="password">
+										<input type="password" class="form-control" style="width: 300px" id="password" name="password">
 									</div>
 								</div>
 							</form>
@@ -80,28 +81,33 @@
 			<div class="larry-personal">
 				<div class="layui-tab">
 					<blockquote class="layui-elem-quote news_search">
-						<form action="/admin/users/getSelect" method="post">
-							<table class="layui-table table-hover" lay-even="" lay-skin="nob">
+						<form action="/admin/users/list" method="post">
+							<table class="layui-table table-hover" lay-even="" lay-skin="nob" >
 								<tr>
-									<td><input type="text" id="pname" name="pname" value="" placeholder="邮箱/手机/昵称/姓名"/></td>
+									<td><input type="text" id="pname" name="pname" class="form-control" value="" placeholder="邮箱/手机/昵称/姓名" style="width: 160px"/></td>
 									<td>
 									
-										<select class="form-control" style="width: 200px;" name="class_id" id="CLASS_ID">
-											<option >请选择班级</option>
+										<select class="form-control" style="width: 150px;" name="class_id" id="class_id">
+											<option value="-1">请选择班级</option>
 										    <c:forEach items="${listc}" var="c" varStatus="stea">
 										    <option value="${c.id}">${c.cname}</option>
 										    </c:forEach>
 										</select>
 									</td>
 									<td>
-										<select class="form-control" style="width: 200px;"name="is_avalible" id="is_avalible" >
-											<optionvalue="2">请选择状态</option>
+										<select class="form-control" style="width: 150px;"name="is_avalible" id="is_avalible" >
+											<option value="-1">请选择状态</option>
 											<option value="1">正常</option>
 											<option value="0">冻结</option>
 							
 										</select>
 									</td>
-									<td>注册时间： <input type="date"/> - <input type="date" /> </td>
+								<td>注册时间:</td>
+								<td><input type="text" name="start" id="start"  class="form-control" style="width: 160px"
+								onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" placeholder="开始注册时间"/> </td>	
+								<td>--</td>
+								   <td ><input type="text"  name="end" id="end"  class="form-control" style="width: 160px"
+								onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"  placeholder="结束注册时间"/>   </td>
 									<td><button type="submit" class="btn btn-info" >查找学员</button></td>
 									<td><button type="reset" class="btn btn-info" onclick="">清空</button></td>
 								</tr>
@@ -115,10 +121,8 @@
 						<div class="layui-tab-item layui-field-box layui-show">
 							<form action="" method="post">
 								<table class="layui-table table-hover" lay-even="" lay-skin="nob" id="mytab" name="mytab">
-
 									<thead>
 										<tr>
-
 											<th>邮箱</th>
 											<th>手机号</th>
 											<th>用户名</th>
@@ -131,8 +135,6 @@
 											<th>操作</th>
 										</tr>
 									</thead>
-									<tr>
-										</thead>
 										<tbody id="t1" name="t1">
 											<c:forEach items="${list}" var="p" varStatus="stea">
 												<tr>
@@ -141,31 +143,29 @@
 													<th>${p.user_name}</th>
 													<th>${p.show_name}</th>
 													<th>${p.id.cname}</th>
-													<c:if test="${p.sex==1}">
-														<th> 男</th>
+													<th><c:if test="${p.sex==1}">
+														 男
 													</c:if>
 													<c:if test="${p.sex==0}">
-														<th> 女</th>
-													</c:if>
+														女
+													</c:if></th>
 													<th>${p.age}</th>
 													<th>
 														<fmt:formatDate value="${p.create_time}" type="date" pattern="yyyy-MM-dd hh:mm:ss" />
 													</th>
-													<c:if test="${p.is_avalible==1}">
-														<th>正常</th>
+													<th><c:if test="${p.is_avalible==1}">
+														正常
 													</c:if>
 													<c:if test="${p.is_avalible==0}">
-														<th>冻结</th>
-													</c:if>
-
+														冻结
+													</c:if></th>
 													<th>
 														<!-- Button trigger modal -->
 														<button type="button" class="layui-btn" data-toggle="modal" onclick="xiugai(${p.user_id})" data-target="#myModal">
-                                                                                                                                                          修改密码
+                                                                                                           修改密码
                                                         </button>
 														<a href="/admin/users/updateid/${p.user_id}/${p.is_avalible}" class="layui-btn layui-btn-primary">冻结</a>
 													</th>
-
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -254,6 +254,7 @@
 			tid.value = '${tid}';
 		</script>
 	</body>
+	
 	<script type="text/javascript">
 		function yangfan() {
 			var user_id = document.getElementById("user_id").value;

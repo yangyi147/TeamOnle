@@ -22,7 +22,7 @@
 		<script src="/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/js/bootstrap-table.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/js/locale/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
-
+     
 		<link rel="stylesheet" type="text/css" href="/comm/layui/css/layui.css" media="all">
 		<link rel="stylesheet" type="text/css" href="/comm/bootstrap/css/bootstrap.css" media="all">
 
@@ -31,7 +31,9 @@
 		<script src="/js/jquery-3.0.0.js" type="text/javascript" charset="utf-8"></script>
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-	</head>
+     
+     	
+     </head>
 	<script type="text/javascript">
 	</script>
 
@@ -40,33 +42,36 @@
 			<div class="larry-personal">
 				<div class="layui-tab">
 					<blockquote class="layui-elem-quote news_search">
-					<form action="" method="post">
+					<form action="/admin/email/list" method="post">
 						<table  class="layui-table table-hover" lay-even="" lay-skin="nob" >
 							<tr>
-								<td>邮箱：<input type="text" id="" value="" /></td>
+								<td><input type="text" id="email" name="email"  class="form-control" placeholder="邮箱" style="width: 160px"/></td>
 									
 								<td>
-									<select class="form-control"style="width: 200px; " >
-										<option>选择类型</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5</option>
+									<select class="form-control"style="width: 150px; " id="type" name="type">
+										<option value="0">选择类型</option>
+										<option value="1">普通</option>
+										<option value="2">定时</option>
+									
 									</select>
 								</td>
 					
 									<td>
 								
-									<select class="form-control"style="width: 200px;" >
-										<option>选择是否发送</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5</option>
+									<select class="form-control"style="width: 150px;"id="status" name="status" >
+										<option value="0">选择是否发送</option>
+										<option value="1">已发送</option>
+										<option value="2">未发送</option>
+							               
 									</select>
 								</td>
-								<td>发送时间：    <input type="date" />  结束时间：  <input type="date" />  </td>
-								<td><button type="button" class="btn btn-info">查询</button></td>
+								<td>发送时间:</td>
+								<td><input type="text" name="start" id="start"  class="form-control" style="width: 160px"
+								onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" /> </td>	
+								<td>结束时间:</td>
+								   <td><input type="text"  name="end" id="end"  class="form-control" style="width: 160px"
+								onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />   </td>
+								<td><button type="submit" class="btn btn-info">查询</button></td>
 								<td><button type="button" class="btn btn-info" onclick="">清空</button></td>
 							</tr>
 
@@ -81,7 +86,6 @@
 
 									<thead>
 										<tr>
-										
 											<th>ID</th>
 											<th>邮箱类型</th>
 											<th>是否发送</th>
@@ -93,27 +97,23 @@
 											<th>操作</th>
 										</tr>
 									</thead>
-									<tr>
-										</thead>
 										<tbody id="t1" name="t1">
 											<c:forEach items="${list}" var="p" varStatus="stea">
 												<tr>
 										
 													<th>${p.id}</th>
-													<c:if test="${p.type==1}"><th>普通</th></c:if>
-													<c:if test="${p.type==2}"><th>定时</th></c:if>
-													<c:if test="${p.status==1}"><th>已发送</th></c:if>
-									                <c:if test="${p.status==2}"><th>未发送</th></c:if>
+													<th><c:if test="${p.type==1}">普通</c:if>
+													<c:if test="${p.type==2}">定时</c:if></th>
+													<th><c:if test="${p.status==1}">已发送</c:if>
+									                <c:if test="${p.status==2}">未发送</c:if></th>
 													<th>${p.title}</th>
 													<th>${p.email}</th>
 													<th><fmt:formatDate value="${p.create_time}" type="date" pattern="yyyy-MM-dd hh:mm:ss"/></th>
 													<th><fmt:formatDate value="${p.send_time}" type="date" pattern="yyyy-MM-dd hh:mm:ss"/></th>
 													<th>${p.user_id.user_name}</th>
 													<th>
-														<a href="" class="layui-btn">查看</a>
-														
+														<a href="/admin/email/initId/${p.id}" class="layui-btn" >查看</a>
 													</th>
-
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -158,44 +158,7 @@
 			</div>
 		</section>
 		<script type="text/javascript " src="/comm/layui/layui.js "></script>
-		<script type="text/javascript ">
-			layui.use(['jquery', 'layer', 'element', 'laypage'], function() {
-				window.jQuery = window.$ = layui.jquery;
-				window.layer = layui.layer;
-				var element = layui.element(),
-					laypage = layui.laypage;
-
-				laypage({
-					cont: 'page',
-					pages: 10 //总页数
-						,
-					groups: 5 //连续显示分页数
-						,
-					jump: function(obj, first) {
-						//得到了当前页，用于向服务端请求对应数据
-						var curr = obj.curr;
-						if(!first) {
-							//layer.msg('第 '+ obj.curr +' 页');
-						}
-					}
-				});
-
-				laypage({
-					cont: 'page2',
-					pages: 10 //总页数
-						,
-					groups: 5 //连续显示分页数
-						,
-					jump: function(obj, first) {
-						//得到了当前页，用于向服务端请求对应数据
-						var curr = obj.curr;
-						if(!first) {
-							//layer.msg('第 '+ obj.curr +' 页');
-						}
-					}
-				});
-			});
-		</script>
+		
 		<script type="text/javascript ">
 			var tid = document.getElementById("tid ");
 			tid.value = '${tid}';
