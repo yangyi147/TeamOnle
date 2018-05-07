@@ -27,6 +27,7 @@
 	media="all">
 <link rel="stylesheet" type="text/css" href="/css/personal.css"
 	media="all">
+ <link href="/js/bootstrapValidator.min.css" rel="stylesheet" />
 <script src="/js/jquery-3.0.0.min.js" type="text/javascript"
 	charset="utf-8"></script>
 <script src="/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
@@ -41,8 +42,18 @@
 <script type="text/javascript" charset="utf-8"
 	src="/js/utf8-jsp/umeditor.min.js"></script>
 <script type="text/javascript" src="/js/utf8-jsp/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript" src="/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="/My97DatePicker/WdatePicker.js"></script>
+ <script src="/js/bootstrapValidator.min.js"></script>
+
+
+
+ <style type="text/css">
+ body {
+	background-color: white;
+}
+ </style>
 <script type="text/javascript">
+
 	$(function() {
 		$("#div1").hide();
 		$("#type").change(function() {
@@ -56,9 +67,12 @@
 
 	});
 
+	
+
 	var b = "";
-	function xianshi() {
+	function xianshi() {		
 		var emass = $("#eid").val();
+		alert(emass);
 		if (emass == 0) {
 			alert("请选择联系人")
 		} else {
@@ -66,6 +80,15 @@
 			$("#email").val(b);
 		}
 	}
+	function test(obj){
+		 //对电子邮件的验证
+		var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+		 if(!myreg.test(obj))
+		 {
+		 alert('请输入有效的邮箱！');
+		return false;
+		 }
+		 }
 	
 </script>
     <style>
@@ -88,9 +111,13 @@
 						<table align="left" id="tab1" >
 							<tr height="50px">
 								<td id="t1"><span id="span1">*</span>	添加联系人:</td>
-								<td id="t2"><textarea name="email" id="email" rows="8"
-										cols="50" style="width: 600px; height: 50px;"class="form-control"
-										placeholder="请选输入对方邮箱,多个请用(;)分号隔开"></textarea></td>
+								<td id="t2">
+								 
+								<textarea name="email" id="email" rows="8"
+										cols="50" style="width: 600px; height: 50px;" class="form-control"
+										placeholder="请选输入对方邮箱,多个请用(;)分号隔开" onb></textarea>
+							
+								</td>
 								<td></td>
 							</tr>
 
@@ -161,10 +188,16 @@
 			</table>
 			<table align="left" style="padding: 30px; margin-top: 30px;">
 				<tr>
-					<td><span id="span2">*</span>邮箱标题：</td>
-					<td height="80px"><input type="text" name="title" id="title" 
-						value="" placeholder="请选输入邮件标题" class="form-control"
-						style="width:160px; height: 30px " /></td>
+					<td>
+					<span id="span2">*</span>邮箱标题：</td>
+					<td height="80px">
+					
+				<input type="text" name="title" id="title" 
+						value="" placeholder="请输入邮件标题" class="form-control"
+						 class="form-control" 
+						style="width:160px; height: 30px " />
+				
+						</td>
 				</tr>
 				<tr>
 					<td><span id="span3">*</span>正文内容：</td>
@@ -195,11 +228,30 @@
 				</Tr>
 				<tr>
 					<td colspan="2" style=" padding: 0px 800px"><input type="submit" 
-						value="发送" class="layui-btn" style="background: black;" class="form-control"/></td>
+						value="发送" class="layui-btn"  class="form-control"/></td>
 				</tr>
 			</table>
 			</div>
+			
+		
+			
 	</form>
+	
+	
+	<!--　<form>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" name="username" />
+            </div>
+            <div class="form-group">
+                <label>Email address</label>
+                <input type="text" class="form-control" name="email" />
+            </div>
+            <div class="form-group">
+                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>-->
+
 </body>
 <script type="text/javascript">
 	var um = UM.getEditor('content');

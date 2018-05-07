@@ -96,7 +96,7 @@ private Map initMap(Map map,HttpServletRequest request) throws Exception {
 public ModelAndView add(HttpServletRequest request)throws Exception {
 	ModelAndView mv = new ModelAndView();
 	Map map = new HashMap<>();
-	List<Users> lists = userServiceImpl.getlistAll(new HashMap<>(map));
+	List<Users> lists = (List<Users>) userServiceImpl.getListAlls();
 	mv.addObject("lists", lists);
 	mv.setViewName("/common/youjianup");
 	return mv;

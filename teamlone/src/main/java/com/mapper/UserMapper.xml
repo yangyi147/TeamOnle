@@ -27,27 +27,32 @@
 			select="com.mapper.Edu_ClassDao.getById"></association>
 	</resultMap>
 	<select id="getlistAll" resultMap="UsersMap" parameterType="java.util.Map">
-		select * from edu_user
-		<where>
-			<if test="pname!=null">
-				and email like '%${pname}%' or mobile like '%${pname}%' or show_name
-				like '%${pname}%' or user_name like '%${pname}%'
-			</if>
-			<if test="class_id>=0">
-				and class_id like '%${class_id}%'
-			</if>
-			<if test="is_avalible>=0">
-				and is_avalible like '%${is_avalible}%'
-			</if>
-			<if test="start!=null">
-				and create_time &gt;#{start}
-			</if>
-			<if test="end!=null">
-				and create_time &lt;#{end}
-			</if>
-		</where>
-	</select>
+		select * from edu_user 
 
+      <where>
+		<if test="pname!=null">
+			and email like '%${pname}%' or mobile like '%${pname}%' or show_name
+			like '%${pname}%' or user_name like '%${pname}%'
+		</if>
+		<if test="class_id>=0">
+			and class_id like '%${class_id}%'
+		</if>
+		<if test="is_avalible>=0">
+			and is_avalible like '%${is_avalible}%'
+		</if>
+		<if test="start!=null">
+			and create_time &gt;#{start}
+		</if>
+		<if test="end!=null">
+			and create_time &lt;#{end}
+		</if>
+
+	</where>
+
+	</select>
+   <select id="getListAlls" resultMap="UsersMap">
+   select * from edu_user 
+   </select>
 	<update id="update" parameterType="Users">
 		update edu_user set
 		password=#{password}
@@ -56,12 +61,28 @@
 
 	<update id="updateid" parameterType="Users">
 		update edu_user
-		set is_avalible=#{is_avalible}
+		set
+		is_avalible=#{is_avalible}
 		where user_id=#{user_id}
 	</update>
 
 	<select id="getById" resultMap="UsersMap" parameterType="int">
 		select * from edu_user where user_id=#{value}
 	</select>
-
+     <select id="getCount" resultType="int"  parameterType="java.util.Map">
+   select count(*) from emp where 0=0 
+   <if test="start!=null and start!=''">
+    and statdate &gt;#{start}
+   </if>
+   <if test="end!=null and start!=''">
+    and statdate &lt;#{end}
+   </if>
+  </select>
+  
+  <select id="getPwd" resultType="Users" parameterType="String">
+		select * from edu_user WHERE email =#{value}
+	</select>
+	<insert id="addUser" parameterType="Users">
+		insert into edu_user (mobile,email,password) values (#{mobile},#{email},#{password}) 
+	</insert>
 </mapper>

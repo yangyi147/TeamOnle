@@ -11,26 +11,24 @@
 
 		<meta charset="UTF-8">
 		<title>个人信息</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="format-detection" content="telephone=no">
-
-		<script src="/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/js/bootstrap-table.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/js/locale/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
-     
+ 
 		<link rel="stylesheet" type="text/css" href="/comm/layui/css/layui.css" media="all">
 		<link rel="stylesheet" type="text/css" href="/comm/bootstrap/css/bootstrap.css" media="all">
-
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="/comm/global.css" media="all">
 		<link rel="stylesheet" type="text/css" href="/css/personal.css" media="all">
-		<script src="/js/jquery-3.0.0.js" type="text/javascript" charset="utf-8"></script>
-		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+		<script src="/js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="/js/My97DatePicker/WdatePicker.js"></script>
      
      	
      </head>

@@ -60,7 +60,14 @@ h2 {
 	margin-left: auto 100px;
 }
 </style>
+<script type="text/javascript">
+function down(){
+	var action = "<%=request.getContextPath() %>/admin/users/down?method=post";
+	window.location=action;
+	}
 
+
+</script>
 
 <body>
 <form method="post" action="/admin/users/parseExcel" enctype="multipart/form-data">
@@ -81,7 +88,7 @@ h2 {
 			</tr>
 			
 			<tr>
-				<td>第四列:赠送课程模板（<a href="#">点击下载模板</a>）
+				<td>第四列:赠送课程模板（<a href="#" onclick="down()">点击下载模板</a>）
 				</td>
 			</tr>
 		
@@ -92,8 +99,8 @@ h2 {
 		</tr>
 			<tr>
 		
-				<td colspan="2" style="padding: 0px 240px"><input type="submit" value="提交" class="layui-btn"/><input
-					type="reset" value="返回" class="layui-btn layui-btn-primary" />
+				<td colspan="2" style="padding: 0px 240px"><input type="submit" value="提交" class="layui-btn"/>
+				<a href="/admin/users/list" class="layui-btn layui-btn-primary">返回</a>
 					</td>
 		</tr>
 		</table>
