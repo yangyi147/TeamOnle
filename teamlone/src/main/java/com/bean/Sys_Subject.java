@@ -5,8 +5,6 @@ import java.util.Date;
 import org.springframework.stereotype.Component;
 @Component
 public class Sys_Subject {
-	
-
 	private int  id;
 	private String name;
 	private int status;
@@ -58,12 +56,9 @@ public class Sys_Subject {
 	public void setSort(int sort) {
 		this.sort = sort;
 	}
-
-	
 	@Override
 	public String toString() {
 		return "Sys_Subject [id=" + id + ", name=" + name + ", status=" + status + ", create_time=" + create_time
 				+ ", pId=" + pId + ", sort=" + sort + "]";
 	}
-
 }

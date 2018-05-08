@@ -24,6 +24,7 @@ public interface Edu_CourseDao {
 
 	Edu_Course getCourseByID(int id);
 	
+<<<<<<< HEAD
 	void updateCourse(Edu_Course course);
 	
 	void deleteTeacherByID(int id);
@@ -34,4 +35,7 @@ public interface Edu_CourseDao {
 	
     Edu_Course getCourseNameRepeat(String courseName);
 	
+=======
+	List<Edu_Course> getTeaByID(int id);
+>>>>>>> branch 'master' of https://github.com/yangyi147/TeamOnle
 }

@@ -2,8 +2,6 @@ package com.bean;
 
 import java.util.Date;
 
-
-
 public class Edu_Course {
 	
 	private int course_id; //¿Î³Ì±àºÅ

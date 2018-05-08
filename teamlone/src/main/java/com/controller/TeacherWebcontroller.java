@@ -20,17 +20,17 @@ import com.service.TeacherService;
 @RequestMapping("/front/teacher")
 public class TeacherWebcontroller {
 	@Autowired
-	private Edu_CourseService edu_CourseService;
-	@Autowired
 	private TeacherService teacherService;
+	
+	@Autowired
+	private Edu_CourseService edu_CourseService;
     @RequestMapping("/list")
 	public ModelAndView article(@RequestParam(name="page",defaultValue="0")int page){
 		  Map map=new HashMap<>();
-//		  PageInfo<Edu_Course> ts=edu_CourseService.getAllEnd_Course(map, page);
     	ModelAndView md=new ModelAndView();
     	PageInfo<Teacher> th=teacherService.getlistAll(map, page);
     	md.addObject("th",th);
-//    	md.addObject("subjectList", ts);
+
     	md.setViewName("/web/teacher/teacher_list");
 		return md;
 	}
@@ -38,7 +38,9 @@ public class TeacherWebcontroller {
     public ModelAndView listone(@PathVariable("id")int id){
     	ModelAndView md=new ModelAndView();
     	 Teacher  teacher=teacherService.getById(id);
+    	 List<Edu_Course> edu_Courses=edu_CourseService.getTeaByID(id);
     	 md.addObject("th", teacher);
+    	 md.addObject("courseList", edu_Courses);
     	 md.setViewName("/web/teacher/teacher_info");
 		 return md;
     }

@@ -140,6 +140,11 @@ public class Edu_CourseServiceImpl implements Edu_CourseService {
 		}
 		return 2;
 	}
+	@Override
+	public List<Edu_Course> getTeaByID(int id) {
+		// TODO Auto-generated method stub
+		return courseDao.getTeaByID(id);
+	}
 
 
 

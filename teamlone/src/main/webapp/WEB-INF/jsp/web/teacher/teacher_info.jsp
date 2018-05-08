@@ -84,11 +84,11 @@
 													</c:otherwise>
 												</c:choose>
 												<div class="cc-mask">
-													<a href="${ctx }/front/couinfo/${course.courseId}" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
+													<a href="${ctx }/front/couinfo/${course.course_id}" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
 												</div>
 											</section>
 											<h3 class="hLh30 txtOf mt10">
-												<a href="${ctx }/front/couinfo/${course.courseId}" title="${course.courseName }" class="course-title fsize18 c-333">${course.courseName }</a>
+												<a href="${ctx }/front/couinfo/${course.course_id}" title="${course.course_name }" class="course-title fsize18 c-333">${course.course_name  }</a>
 											</h3>
 										</div>
 									</li>

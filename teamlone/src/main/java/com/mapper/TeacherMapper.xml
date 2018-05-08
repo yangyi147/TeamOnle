@@ -15,7 +15,7 @@
 <result  column="create_time"  property="create_time"/>
 <result  column="update_time"  property="update_time"/>
 <result  column="sort"  property="sort"/>
-<association property="subject_id" column="subject_id"  select="com.mapper.SubjectsDao.getById"></association>
+<association property="subject_id" column="subject_id"  select="com.mapper.Sys_SubjectDao.getSubjectById"></association>
 </resultMap>
 <select id="getListAll"  resultMap="TeacherMap" parameterType="java.util.Map">
 select * from edu_teacher  
@@ -49,8 +49,5 @@ insert into edu_teacher(name,th_name,education,career,pic_path,sort,create_time,
 </insert>
 <update id="upTer"  parameterType="Teacher"  >
 update edu_teacher  set name=#{name},th_name=#{th_name},education=#{education},pic_path=#{pic_path},career=#{career},sort=#{sort},update_time=#{update_time}  where id=#{id}
-
-
-
 </update>
 </mapper>

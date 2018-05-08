@@ -2,7 +2,21 @@
 <!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.ImagesDao">
-<select id="getListAll"  resultType="Images">
-select * from edu_website_images where type_id=1
+<resultMap type="Images" id="ImgMap">
+<result column="image_id" property="image_id"/>
+<result column="image_url" property="image_url"/>
+<result column="link_address" property="link_address"/>
+<result column="title" property="title"/>
+<result column="series_number" property="series_number"/>
+<result column="preview_url" property="preview_url"/>
+<result column="color" property="color"/>
+<result column="dercribe" property="dercribe"/>
+<association property="t_id" column="type_id"  select="com.mapper.Img_typeDao.getById"></association>
+</resultMap>
+<select id="getListAll"  resultType="Images"  resultMap="ImgMap">
+select * from edu_website_images 
+</select>
+<select id="getById" parameterType="int"  resultType="Images">
+select * from edu_website_images  where image_id=#{id}
 </select>
 </mapper>

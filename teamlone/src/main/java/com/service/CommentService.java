@@ -7,7 +7,7 @@ import com.bean.Comment;
 import com.github.pagehelper.PageInfo;
 
 public interface CommentService {
-  public PageInfo<Comment> getListAll(Map map,int page);
+    public PageInfo<Comment> getListAll(Map map,int page);
 	public void delCo(int id);
 	public void inCom(Comment comment);
 }

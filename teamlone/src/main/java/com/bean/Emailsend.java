@@ -12,6 +12,16 @@ public class Emailsend {
        private Date send_time;
        private int status;
        private int type;
+       private String start;
+       private String end;
+       private String starttime;
+       
+	public String getStarttime() {
+		return starttime;
+	}
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
+	}
 	public int getId() {
 		return id;
 	}
@@ -50,6 +60,7 @@ public class Emailsend {
 	public void setCreate_time(Date create_time) {
 		this.create_time = create_time;
 	}
+	
 	public Date getSend_time() {
 		return send_time;
 	}
@@ -67,6 +78,19 @@ public class Emailsend {
 	}
 	public void setType(int type) {
 		this.type = type;
+	}
+	
+	public String getStart() {
+		return start;
+	}
+	public void setStart(String start) {
+		this.start = start;
+	}
+	public String getEnd() {
+		return end;
+	}
+	public void setEnd(String end) {
+		this.end = end;
 	}
 	@Override
 	public String toString() {
