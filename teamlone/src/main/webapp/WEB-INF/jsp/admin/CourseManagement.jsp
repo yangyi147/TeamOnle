@@ -4,11 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>学员管理</title>
-
 		<meta charset="UTF-8">
 		<title>个人信息</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,7 +24,6 @@
 		<script src="/js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/comm/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/JavaScript" src="/static/My97DatePicker/WdatePicker.js"></script> 
-
 	</head>
 
 <style>
@@ -35,7 +32,9 @@
          height: 40px
          
      }
-         
+     .no{
+     width: 80px
+     }
 </style>
 
 	<body>
@@ -48,14 +47,14 @@
 								<tr>
 									<td><input type="text" id="nameid" name="name" value="${map.name }" class="form-control" placeholder="请输入搜索名称" /></td>
 									<td>
-										<select class="form-control" id="ztid" name="ztid" style="width: 200px; ">
+										<select class="form-control " id="ztid" name="ztid" style="width: 120px; ">
 											<option value="-1">请选择状态</option>
 											<option value="1">上架</option>
 											<option value="2">下架</option>
 										</select>
 									</td>
 									<td>
-										<select class="form-control" id="zyid" name="zyid" style="width: 200px;">
+										<select class="form-control " id="zyid" name="zyid" style="width: 120px;">
 											<option value="-1">请选择专业</option>
 											<c:forEach items="${allSubjict }" var="subjiect">
 											<option value="${subjiect.id }" >${subjiect.name }</option>
@@ -64,8 +63,9 @@
 									</td>
 									<td >
 									创建时间: <input type="date" name="stattime" id="stattime" value="${map.stattim }"/> - <input type="date" id="endtime" name="endtime" value="${map.endtime}" /> </td>
-									<td><button type="submit" class="btn btn-info">查找课程</button></td>
-									<td><button type="button" class="btn btn-info" onclick="qk()">清空</button></td>
+									<td><button type="submit" class="btn btn-info no">查找课程</button></td>
+									<td><button type="button" class="btn btn-info no" onclick="addCourse()">添加课程</button></td>
+									<td><button type="button" class="btn btn-info no" onclick="qk()">清空</button></td>
 								</tr>
 
 							</table>
@@ -77,10 +77,8 @@
 						<div class="layui-tab-item layui-field-box layui-show">
 							<form action="" method="post">
 								<table class="layui-table table-hover" lay-even="" lay-skin="nob" id="mytab" name="mytab">
-
 									<thead>
 										<tr>
-										
 										<th>课程名称</th>
 										<th>状态</th>
 										<th>专业</th>
@@ -94,12 +92,9 @@
 										<th>操作</th>
 										</tr>
 									</thead>
-									<tr>
-										</thead>
 										<tbody id="t1" name="t1">
 										<c:forEach items="${allEnd_Course.list }" var="course" varStatus="stat">
-											
-										
+										<tr>
 										<th>${course.course_name }</th>
 										<th>
 										<c:if test="${course.is_avaliable==1 }">
@@ -110,21 +105,19 @@
 										</c:if>
 										</th>
 										<th>${course.subject.name }</th>
-										<th>${course.source_prlce }</th>
+										<th>${course.source_price }</th>
 										<th>${course.current_price }</th>
 										<th>${course.lession_num }</th>
 										<th>${course.page_buycount }</th>
 										<th>${course.page_vlewcount }</th>
-										
-										<th> <fmt:formatDate value="${course.update_time }" type="date" pattern="yyyy-MM-dd hh:mm" /></th>
-										
-										<c:if test="${course.end_time!=null }">
-										<th><fmt:formatDate value="${course.update_time }" type="date" pattern="yyyy-MM-dd hh:mm" />  </th>
+										<th> <fmt:formatDate value="${course.update_time }" type="date" pattern="yyyy-MM-dd" /></th>
+										<th><c:if test="${course.losetype==1 }">
+										<fmt:formatDate value="${course.update_time }" type="date" pattern="yyyy-MM-dd" />
 										</c:if>
-										<c:if test="${course.end_time==null }">
-										<th>购买后的${course.lose_time }天</th>
+										<c:if test="${course.losetype==2 }">
+										购买后的${course.lose_time }天
 										</c:if>
-										
+										</th>
 										<th><input type="button" class="btn btn-default in" onclick="chapte(${course.course_id })"  value="章节管理" style="background: black; color: white;" /><input type="button" class="btn btn-default in" onclick="chapter(${course.subject.id },${course.is_avaliable },${course.course_id })" value="修改" style="background: black; color: white;" /><input type="button" class="btn btn-default in" value="删除" style="background: black; color: white;" /></th>
 										</tr>
 											</c:forEach>
@@ -180,6 +173,10 @@
 	}
 	   function chapte(id) {
 		window.location.href="/admin/course/chapte/"+id;
+	}
+	   
+	   function addCourse() {
+		window.location.href="/admin/course/addCourse"
 	}
 	   
 </script>
