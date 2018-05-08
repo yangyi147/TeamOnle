@@ -6,6 +6,6 @@ import com.bean.Edu_Teacher;
 
 public interface Edu_TeacherService {
 	
-	List<Edu_Teacher>getAllTeacher();
+	List<Edu_Teacher>getAllTeacherBySubjectId();
 
 }

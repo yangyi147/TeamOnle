@@ -68,7 +68,7 @@
    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
     <!-- 配置安全管理器 -->
     <property name="securityManager" ref="securityManager"></property>
-    <property name="loginUrl" value="/admin/fuction/login"></property>
+    <property name="loginUrl" value="/tmp.jsp"></property>
     <property name="successUrl" value="/index.jsp"></property>
     <property name="unauthorizedUrl" value="/unauthorized.jsp"></property>
     <!-- 配置那些页面需要受保护，以及访问这些页面需要的权限 -->
@@ -78,6 +78,7 @@
      -->
     <property name="filterChainDefinitions">
       <value>
+       /tmp.jsp=anon
        /admin/fuction/login=anon
        /admin/login/login=anon
        /comm/**=anon

@@ -8,9 +8,9 @@ select subject_id id,subject_name name,parent_id pId from sys_subject where subj
 </select>
 <select id="getAllSubjict" resultType="com.bean.Sys_Subject">
 select subject_id id,subject_name name,PARENT_ID pId from sys_subject
-</select>
+</select>  
 <select id="getAllSubjictByparent_Id" resultType="com.bean.Sys_Subject">
-SELECT subject_id id,subject_name name,parent_id pId from sys_subject WHERE  parent_id=#{id}
+SELECT subject_id id,subject_name name,parent_id pId from sys_subject
 </select>
 
 <insert id="insertSubject" parameterType="com.bean.Sys_Subject">

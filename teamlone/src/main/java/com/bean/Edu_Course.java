@@ -18,7 +18,7 @@ public class Edu_Course {
 	
 	private Date add_time;//添加时间
 	
-	private double source_prlce;//课程原价（只显示）
+	private double source_price;//课程原价（只显示）
 	
 	private double current_price;//课程销售价格（实际支付价格）设置为0则可以免费观看
 	
@@ -37,6 +37,8 @@ public class Edu_Course {
 	private int page_vlewcount;//浏览数量
 	
 	private Date end_time;//有效的结束时间
+	
+	private String end_times;
 	
 	private int losetype;//有效期类型，0：到期时间，1：按天数
 	        
@@ -96,12 +98,13 @@ public class Edu_Course {
 		this.add_time = add_time;
 	}
 
-	public double getSource_prlce() {
-		return source_prlce;
+
+	public double getSource_price() {
+		return source_price;
 	}
 
-	public void setSource_prlce(double source_prlce) {
-		this.source_prlce = source_prlce;
+	public void setSource_price(double source_price) {
+		this.source_price = source_price;
 	}
 
 	public double getCurrent_price() {
@@ -208,16 +211,29 @@ public class Edu_Course {
 		this.course_gross_income = course_gross_income;
 	}
 
+	public String getEnd_times() {
+		return end_times;
+	}
+
+	public void setEnd_times(String end_times) {
+		this.end_times = end_times;
+	}
+
 	@Override
 	public String toString() {
 		return "Edu_Course [course_id=" + course_id + ", course_name=" + course_name + ", is_avaliable=" + is_avaliable
-				+ ", subject=" + subject + ", add_time=" + add_time + ", source_prlce=" + source_prlce
-				+ ", current_price=" + current_price + ", title=" + title + ", context=" + context + ", lession_num="
-				+ lession_num + ", logo=" + logo + ", update_time=" + update_time + ", page_buycount=" + page_buycount
-				+ ", page_vlewcount=" + page_vlewcount + ", end_time=" + end_time + ", losetype=" + losetype
-				+ ", lose_time=" + lose_time + ", sequence=" + sequence + ", course_gross_income=" + course_gross_income
-				+ "]";
+				+ ", subject=" + subject + ", subject_link=" + subject_link + ", add_time=" + add_time
+				+ ", source_price=" + source_price + ", current_price=" + current_price + ", title=" + title
+				+ ", context=" + context + ", lession_num=" + lession_num + ", logo=" + logo + ", update_time="
+				+ update_time + ", page_buycount=" + page_buycount + ", page_vlewcount=" + page_vlewcount
+				+ ", end_time=" + end_time + ", end_times=" + end_times + ", losetype=" + losetype + ", lose_time="
+				+ lose_time + ", sequence=" + sequence + ", course_gross_income=" + course_gross_income + "]";
 	}
+
+
+
+
+
 
 	
 	

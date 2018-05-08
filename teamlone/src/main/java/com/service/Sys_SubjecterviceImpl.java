@@ -33,9 +33,9 @@ public class Sys_SubjecterviceImpl implements Sys_Subjectervice {
 	 *按照专业的父id查询所有子属性
 	 */
 	@Override
-	public List<Sys_Subject> getAllSubjictByparent_Id(int id) {
+	public List<Sys_Subject> getAllSubjictByparent_Id() {
 		// TODO Auto-generated method stub
-		return SubjectDAO.getAllSubjictByparent_Id(id);
+		return SubjectDAO.getAllSubjictByparent_Id();
 	}
 	/* (zh)
 	 * 添加专业
