@@ -12,8 +12,8 @@ public interface Edu_TeacherDao {
 	
 	/**
 	 * @return
-	 * 查询所有教师
+	 * 按照专业id查询所有教师
 	 */
-	List<Edu_Teacher>getAllTeacher();
+	List<Edu_Teacher>getAllTeacherBySubjectId();
 
 }

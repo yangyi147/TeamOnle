@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bean.Users;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mapper.UserDao;
 
 @Service
 public class UserServiceImpl implements UserService{
 	@Autowired
     UserDao userdao;
+	private int pagesize=2;
 	@Override
 	public void insave(Users users) {
 		// TODO Auto-generated method stub
@@ -20,10 +23,14 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<Users> getlistAll() {
+	public PageInfo<Users> getlistAll(Map map,int page) {
 		// TODO Auto-generated method stub
-		List<Users> list = userdao.getlistAll();
-		return list;
+		
+		PageHelper.offsetPage(page, pagesize);
+		List<Users> listAllUser = userdao.getlistAll(map);
+		PageInfo<Users> ph=new PageInfo<Users>(listAllUser);
+		return ph;
+		
 	}
 
 	@Override
@@ -47,11 +54,34 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<Users> getselect(Map map) {
+	public int getCount(Map map) {
 		// TODO Auto-generated method stub
-		List<Users> list = userdao.getselect(map);
-		return list;
+		return userdao.getCount(map);
 	}
+
+	@Override
+	public List<Users> getListAlls() {
+		// TODO Auto-generated method stub
+		return userdao.getListAlls();
+	}
+
+	@Override
+	public Users getPwd(String userName) {
+		// TODO Auto-generated method stub
+		return userdao.getPwd(userName);
+	}
+
+	@Override
+	public void addUser(Users user) {
+		// TODO Auto-generated method stub
+		userdao.addUser(user);
+	}
+
+
+
+
+
+
 
 
 

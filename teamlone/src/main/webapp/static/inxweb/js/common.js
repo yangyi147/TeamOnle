@@ -334,7 +334,7 @@ function lrFun(type) {
                         '</ol>'+
                         /*'<section class="hLh30 of pl10"><span class="fr"><a href="/uc/register" class="c-master fsize12">没有账号？去注册→</a></span>'+*/
                         '<section class="hLh30 of pl10">'+
-                        '<span class="fl"><label class="hand c-999 vam"><input type="checkbox" style="vertical-align: -2px;" id="autoThirty">自动登录</label><a class="vam ml10 c-blue" title="" href="/front/passwordRecovery">忘记密码?</a></span></section>'+
+                        '<span class="fl"><label class="hand c-999 vam"><input type="checkbox" style="vertical-align: -2px;" id=" ">自动登录</label><a class="vam ml10 c-blue" title="" href="/front/passwordRecovery">忘记密码?</a></span></section>'+
                         '<section class="mt20 tac">'+
                             '<a href="javascript:void(0)" title="登 录" class="e-login-btn" onclick="dialogLogin('+type+')">登 录</a>'+
                         '</section>'+
@@ -348,7 +348,7 @@ function lrFun(type) {
                 '</section>'+
                 '<section class="undis e-login-ele">'+
                     '<div class="mt10">'+
-                        '<p class="e-l-jy"></p>'+
+                        '<p class="e-l-jy"></p>'+ 
                     '</div>'+
                     '<div>'+
                         '<ol class="e-login-options">'+
@@ -368,18 +368,21 @@ function lrFun(type) {
                                 '<input id="u-passwordre-reg" type="password" placeholder="请再输入一次密码"  name="" value="" onkeyup="$(this).next().html(\'\');">'+
                                 '<p class="lr-tip-wrap"></p>'+
                             '</li>'+
-                            '<li>'+
+                          
+                        '</ol>'+
+                        '<section class="mt20 tac">'+
+                            '<a href="javascript: void(0)" onclick="dialogRegister()" title="注 册" class="e-login-btn">注 册</a>'+
+                        '</section>'+
+                    /*   
+                     * 
+                     *    '<li>'+
                                 '<input id="u-randomcode-reg" class="fl" style="width: 100px;" type="text" placeholder="请输入验证码"  name="" value="" onkeyup="$(this).next().next().next().html(\'\');" maxlength="4">'+
                                 '<a href="javascript:void(0)" title="" class="vam ml10 disIb fl"><img onclick="this.src=\'/ran/random?random=\'+Math.random()" alt="验证码，点击图片更换" src="/ran/random" width="86" height="40"></a>'+
                                 '<span class="c-999 fl ml10">看不清<br><a href="javascript:void(0)" class="js-verify-refresh c-green" onclick="$(this).parent().prev().find(\'img\').click()">换一张</a></span>'+
                                 '<p class="lr-tip-wrap"><span class="c-red"></p>'+
                                 '<p class="clear"></p>'+
                             '</li>'+
-                        '</ol>'+
-                        '<section class="mt20 tac">'+
-                            '<a href="javascript: void(0)" onclick="dialogRegister()" title="注 册" class="e-login-btn">注 册</a>'+
-                        '</section>'+
-                    /*    '<section class="mt20 sf-lr-wrap tac">'+
+                     *  '<section class="mt20 sf-lr-wrap tac">'+
                             '<h6 class="hLh20 mb15"><span class="c-666 fsize14">第三方快捷登录</span></h6>'+
                             '<a href="" title="QQ登录" class="qq-sf">&nbsp;</a>'+
                             '<a href="" title="微信登录" class="wx-sf">&nbsp;</a>'+
@@ -552,15 +555,15 @@ function dialogRegister() {
 		return;
 	}
 	
-	if($("#u-randomcode-reg").val().trim()==""){//验证 验证码是否为空
-		$("#u-randomcode-reg").next().next().next().html('<span class="c-orange"><em class="icon16 u-a-cw">&nbsp;</em>请输入验证码！</span>');
-		return;
-	}
+//	if($("#u-randomcode-reg").val().trim()==""){//验证 验证码是否为空
+//		$("#u-randomcode-reg").next().next().next().html('<span class="c-orange"><em class="icon16 u-a-cw">&nbsp;</em>请输入验证码！</span>');
+//		return;
+//	}"registerCode":$("#u-randomcode-reg").val(),
 
 	$.ajax({
 		url : baselocation + "/uc/createuser",
 		data : {"user.email":$("#u-email-reg").val(),"user.password":$("#u-password-reg").val(),
-			"confirmPwd":$("#u-passwordre-reg").val(),"registerCode":$("#u-randomcode-reg").val(),
+			"confirmPwd":$("#u-passwordre-reg").val(),
 			"user.mobile":$("#u-mobile-reg").val()},
 		type : "post",
 		dataType : "json",

@@ -4,4 +4,8 @@
 <select id="getById" resultType="Imges_type" parameterType="int">
 select * from edu_website_images_type where type_id=#{id}
 </select>
+<select  id="getlistAll" resultType="Imges_type">
+select * from edu_website_images_type 
+
+</select>
 </mapper>

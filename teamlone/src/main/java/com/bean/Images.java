@@ -9,7 +9,7 @@ public class Images {
 	private int series_number;
 	private String preview_url;
 	private String color;
-	private String dercribe;
+	private String describes;
 	public int getImage_id() {
 		return image_id;
 	}
@@ -52,17 +52,22 @@ public class Images {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	public String getDercribe() {
-		return dercribe;
-	}
-	public void setDercribe(String dercribe) {
-		this.dercribe = dercribe;
-	}
 	public Imges_type getT_id() {
 		return t_id;
 	}
 	public void setT_id(Imges_type t_id) {
 		this.t_id = t_id;
 	}
-
+	public String getDescribes() {
+		return describes;
+	}
+	public void setDescribes(String describes) {
+		this.describes = describes;
+	}
+	@Override
+	public String toString() {
+		return "Images [image_id=" + image_id + ", image_url=" + image_url + ", link_address=" + link_address
+				+ ", title=" + title + ", t_id=" + t_id + ", series_number=" + series_number + ", preview_url="
+				+ preview_url + ", color=" + color + ", describes=" + describes + "]";
+	}
 }

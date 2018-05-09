@@ -19,7 +19,23 @@ public class Users {
       private int  msg_num;
       private int  sys_msg_num;
       private Date last_system_time;
-	  public int getUser_id() {
+      private String end;
+      private String start;
+      
+      
+	  public String getEnd() {
+		return end;
+	}
+	public void setEnd(String end) {
+		this.end = end;
+	}
+	public String getStart() {
+		return start;
+	}
+	public void setStart(String start) {
+		this.start = start;
+	}
+	public int getUser_id() {
 		return user_id;
 	}
 	public void setUser_id(int user_id) {
