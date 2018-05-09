@@ -87,9 +87,7 @@
        /images/**=anon
        /inc/**=anon
        /js/**=anon
-       /json/**=anon
        /jsplug/**=anon
-       /kindeditor/**=anon
        /skins/**=anon
        /static/**=anon
         /validation/login=anon
