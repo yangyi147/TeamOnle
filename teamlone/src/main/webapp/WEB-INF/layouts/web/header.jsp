@@ -35,7 +35,7 @@
 							<em class="icon18 news-icon">&nbsp;</em>
 						</a><q class="red-point" style="display: none">&nbsp;</q></li>
 					<li class="h-r-user undis" id="is-login-two"><a href="${ctx}/uc/index" title="">
-							<img src="${ctx }/static/inxweb/img/avatar-boy.gif" width="30" height="30" class="vam picImg" alt="">
+							<img src="${ctx}/static/inxweb/img/avatar-boy.gif" width="30" height="30" class="vam picImg" alt="">
 							<span class="vam disIb" id="userName"></span>
 						</a>
 						<a href="javascript:void(0)" title="退出" onclick="exit();" class="ml5">退出</a></li>

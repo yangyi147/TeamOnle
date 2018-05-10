@@ -1,8 +1,11 @@
 package com.controller;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,6 +16,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -48,28 +56,31 @@ public class UserController {
      EclassServiceImpl eclassServiceImpl;
 	@Autowired
 	UserService userService;
+//	分页及表格显示
 	@RequestMapping("/list")
-	public ModelAndView getlistAll(Users users,HttpServletRequest request,@RequestParam(name="page",defaultValue="0")int page) throws Exception{
+	public ModelAndView getlistAll(@RequestParam(required=true,defaultValue="1")Integer page,HttpServletRequest request) throws Exception{
+
 		ModelAndView mv = new ModelAndView();
 		Map map = new HashMap<>();
+		PageHelper.startPage(page,10); //分页设置每页显示数
 		map=initMap(request, map);
-		PageInfo<Users> listAllUser = userService.getlistAll(map,page);
-		System.out.println(listAllUser);
-		mv.addObject("page", listAllUser);
-	
+		List<Users> listAllUser = userService.getlistAll(map);
+		PageInfo<Users> pageInfo=new PageInfo<>(listAllUser); //分页把数据存放pageinfo
+		mv.addObject("list", listAllUser);
+		mv.addObject("page", pageInfo);  //分页界面传参
 		List<EClass> listc=eclassServiceImpl.getlistAll();
 		mv.addObject("listc", listc);
 		mv.setViewName("/common/student");
 		return mv;	
 	}
-
+//   修改密码
 	@RequestMapping("/update")
 	public String update(Users users) {
 		userServiceImpl.update(users);
 		return "redirect:/admin/users/list";
 
 	}
-
+//  冻结  正常
 	@RequestMapping("/updateid/{id}/{is_avalible}")
 	public String updateid(@PathVariable("id")int id,@PathVariable("is_avalible")int is_avalible) {
 		Users users = new Users();
@@ -84,7 +95,7 @@ public class UserController {
 		userServiceImpl.updateid(users);
 		return "redirect:/admin/users/list";
 	}
-
+//  模糊查寻
 	private Map initMap(HttpServletRequest request,Map map) throws Exception {
 		String pname = request.getParameter("pname");
 		String is_avalible = request.getParameter("is_avalible");
@@ -118,7 +129,7 @@ public class UserController {
     }
    
    @RequestMapping("/parseExcel")
-//	导入excil表
+//	导入excil表   写入到数据库
 	 private String readExcel(@RequestParam("file")MultipartFile file,HttpServletRequest request) throws Exception{  
 	      //创建输入流  
 	        InputStream stream = file.getInputStream(); 
@@ -186,12 +197,12 @@ public class UserController {
 	       	return "redirect:/admin/users/list";
   	
 	     }
+//   下载模板
    @RequestMapping("/down")
 	public String downAction(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		java.io.OutputStream o = response.getOutputStream();
 		byte b[] = new byte[500];
 		java.io.File fileLoad = new java.io.File(request.getRealPath("/Excel/user.xls"));
-		System.out.println(fileLoad.getPath());
 		response.reset();
 		response.setContentType("application/vnd.ms-excel");
 		response.setHeader("content-disposition",
@@ -209,6 +220,86 @@ public class UserController {
 
 		return null;
 	}
+   
+// 导出Excel
+   @RequestMapping("/getAction")
+public String getAction(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    // 第一步，创建一个webbook，对应一个Excel文件    
+    HSSFWorkbook wb = new HSSFWorkbook();    
+    // 第二步，在webbook中添加一个sheet,对应Excel文件中的sheet    
+    HSSFSheet sheet = wb.createSheet("学生表一");    
+    // 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short    
+    HSSFRow row = sheet.createRow((int) 0);    
+    // 第四步，创建单元格，并设置值表头 设置表头居中    
+    HSSFCellStyle style = wb.createCellStyle();    
+    style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式    
+
+    HSSFCell cell = row.createCell((short) 0);    
+    cell.setCellValue("id");    
+    cell.setCellStyle(style);    
+    cell = row.createCell((short) 1);    
+    cell.setCellValue("手机号");    
+    cell.setCellStyle(style);    
+    cell = row.createCell((short) 2);    
+    cell.setCellValue("邮箱");    
+    cell.setCellStyle(style);    
+    cell = row.createCell((short) 3);    
+    cell.setCellValue("姓名");    
+    cell.setCellStyle(style);    
+    cell = row.createCell((short) 4);    
+    cell.setCellValue("昵称");    
+    cell.setCellStyle(style);    
+    
+    // 第五步，写入实体数据 实际应用中这些数据从数据库得到，    
+    Map map = new HashMap<>();
+
+	map=initMap(request, map);
+	List<Users> list = userService.getlistAll(map);   
+
+    for (int i = 0; i < list.size(); i++)    
+    {    
+        row = sheet.createRow((int) i + 1);    
+        Users stu = (Users) list.get(i);    
+        // 第四步，创建单元格，并设置值    
+        row.createCell((short) 0).setCellValue((double) stu.getUser_id());    
+        row.createCell((short) 1).setCellValue(stu.getMobile());    
+        row.createCell((short) 2).setCellValue(stu.getEmail());  
+        row.createCell((short) 3).setCellValue(stu.getUser_name()); 
+        row.createCell((short) 4).setCellValue(stu.getShow_name()); 
+    }    
+    // 第六步，将文件存到指定位置    
+    try    
+    {    
+        FileOutputStream fout = new FileOutputStream("E:/Members.xls");    
+        wb.write(fout);    
+        fout.close();    
+    }    
+    catch (Exception e)    
+    {    
+        e.printStackTrace();    
+    }    
+    System.out.println("成功");
+//    OutputStream out = null;    
+//    try {        
+//        out = response.getOutputStream();    
+//        String fileName = "enroll.xls";// 文件名    
+//        response.setContentType("application/x-msdownload");    
+//        response.setHeader("Content-Disposition", "attachment; filename="    
+//                                                + URLEncoder.encode(fileName, "UTF-8"));    
+//        wb.write(out);    
+//    } catch (Exception e) {    
+//        e.printStackTrace();    
+//    } finally {      
+//        try {       
+//            out.close();      
+//        } catch (IOException e) {      
+//            e.printStackTrace();    
+//        }      
+//    }
+	   
+	return "redirect:/admin/users/list";
+}    
+   
 
 
 		    }

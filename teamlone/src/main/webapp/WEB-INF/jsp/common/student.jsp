@@ -100,16 +100,16 @@
 					<table class="layui-table table-hover" lay-even="" lay-skin="nob">
 						<tr>
 							<td><input type="text" id="pname" name="pname"
-								class="form-control" value="" placeholder="邮箱/手机/昵称/姓名"
-								style="width: 160px" /></td>
-							<td><select class="form-control" style="width: 150px;"
+								class="form-control" value="" placeholder="邮箱/手机/姓名"
+								style="width: 130px" /></td>
+							<td><select class="form-control" style="width: 130px;"
 								name="class_id" id="class_id">
 									<option value="-1">请选择班级</option>
 									<c:forEach items="${listc}" var="c" varStatus="stea">
 										<option value="${c.id}">${c.cname}</option>
 									</c:forEach>
 							</select></td>
-							<td><select class="form-control" style="width: 150px;"
+							<td><select class="form-control" style="width: 130px;"
 								name="is_avalible" id="is_avalible">
 									<option value="-1">请选择状态</option>
 									<option value="1">正常</option>
@@ -118,16 +118,17 @@
 							</select></td>
 							<td>注册时间:</td>
 							<td><input type="text" name="start" id="start"
-								class="form-control" style="width: 160px"
+								class="form-control" style="width: 150px"
 								onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
 								placeholder="开始注册时间" /></td>
 							<td>--</td>
 							<td><input type="text" name="end" id="end"
-								class="form-control" style="width: 160px"
+								class="form-control" style="width: 150px"
 								onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
 								placeholder="结束注册时间" /></td>
 							<td><button type="submit" class="btn btn-info">查找学员</button></td>
-							<td><button type="reset" class="btn btn-info" onclick="">清空</button></td>
+							<td><button type="reset" class="btn btn-info" >清空</button></td>
+							<td><a href="/admin/users/getAction" class="btn btn-info" >导出Excel</a></td>
 						</tr>
 
 					</table>
@@ -156,7 +157,7 @@
 								</tr>
 							</thead>
 							<tbody id="t1" name="t1">
-								<c:forEach items="${page.list}" var="p" varStatus="stea">
+								<c:forEach items="${list}" var="p" varStatus="stea">
 									<tr>
 										<th>${p.email}</th>
 										<th>${p.mobile}</th>
@@ -195,13 +196,42 @@
 									</tr>
 								</c:forEach>
 							</tbody>
-
+    
 
 						</table>
+						
+						    <table class="layui-table table-hover" lay-even="" lay-skin="nob">
+                      <tr>
+                      
+                      <td ><c:if test="${page.isFirstPage==true }">
+						<a>首页</a>
+					</c:if> <c:if test="${page.isFirstPage==false }">
+						<a href="/admin/users/list?page=${page.firstPage }">首页</a>
+					</c:if>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:if
+						test="${page.hasPreviousPage==true }">
+						<a href="/admin/users/list?page=${page.prePage }">上一页</a>
+					</c:if> <c:if test="${page.hasPreviousPage==false }">
+						<a>上一页</a>
+					</c:if> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					每页${page.pageSize }条
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${page.pageNum }/${page.pages }
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:if
+						test="${page.hasNextPage==true }">
+						<a href="/admin/users/list?page=${page.nextPage }">下一页</a>
+					</c:if> <c:if test="${page.hasNextPage==false }">
+						<a>下一页</a>
+					</c:if>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:if
+						test="${page.isLastPage==false }">
+						<a href="/admin/users/list?page=${page.lastPage }">末页</a>
+					</c:if> <c:if test="${page.isLastPage==true }">
+						<a>末页</a>
+					</c:if></td>
+                             </tr>
+                      </table>
 					</form>
-					<div class="larry-table-page clearfix ">
+					<!-- <div class="larry-table-page clearfix ">
 						<div id="page" class="page"></div>
-					</div>
+					</div> -->
 				</div>
 
 				<!-- 登录日志 -->
@@ -241,7 +271,13 @@
 	</div>
 	</section>
 	<script type="text/javascript" src="/comm/layui/layui.js "></script>
-	<script type="text/javascript">
+	
+	<!-- 		<script type="text/javascript "> 
+			var tid = document.getElementById("tid ");
+			tid.value = '${tid}';
+		</script>  
+		
+		<script type="text/javascript">
 		 layui.use(['jquery','layer','element','laypage'],function(){
 		      window.jQuery = window.$ = layui.jquery;
 		      window.layer = layui.layer;
@@ -255,6 +291,7 @@
 						jump: function(obj, first) {
 							//得到了当前页，用于向服务端请求对应数据
 							var curr = obj.curr;
+							
 							if(!first) {
 								document.forms[0].action="/admin/users/list?page="+curr;
 								document.forms[0].submit();
@@ -263,10 +300,8 @@
 					});
 	 });
 		</script>
-	<!-- 		<script type="text/javascript "> 
-			var tid = document.getElementById("tid ");
-			tid.value = '${tid}';
-		</script>  -->
+		
+		-->
 </body>
 
 <script type="text/javascript">

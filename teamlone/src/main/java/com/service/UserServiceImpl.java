@@ -15,7 +15,7 @@ import com.mapper.UserDao;
 public class UserServiceImpl implements UserService{
 	@Autowired
     UserDao userdao;
-	private int pagesize=2;
+//	private int pagesize=5;
 	@Override
 	public void insave(Users users) {
 		// TODO Auto-generated method stub
@@ -23,13 +23,12 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public PageInfo<Users> getlistAll(Map map,int page) {
+	public List<Users> getlistAll(Map map) {
 		// TODO Auto-generated method stub
+//		PageHelper.offsetPage(page, pagesize);
 		
-		PageHelper.offsetPage(page, pagesize);
-		List<Users> listAllUser = userdao.getlistAll(map);
-		PageInfo<Users> ph=new PageInfo<Users>(listAllUser);
-		return ph;
+//		PageInfo<Users> ph=new PageInfo<Users>(map);
+		return  userdao.getlistAll(map);
 		
 	}
 

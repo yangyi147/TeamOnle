@@ -134,6 +134,7 @@ public String sendEmail(Model model, HttpServletRequest request,Emailsend e) thr
 			String cons="0 "+date_time[1]+" "+date_time[0]+" "+date_year[2]+" "+date_year[1]+" ?"+" "+date_year[0];
 			QuartzManager.addJob(JOB_NAME, JOB_GROUP_NAME, TRIGGER_NAME, TRIGGER_GROUP_NAME, job,cons); 
 		}
+		
 		e.setCreate_time(new Date());
 		emailsendServiceImpl.insave(e);
 		model.addAttribute("e", e);

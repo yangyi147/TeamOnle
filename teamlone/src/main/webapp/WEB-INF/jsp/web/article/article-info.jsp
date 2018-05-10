@@ -57,7 +57,7 @@
 									<tt class="c-999 f-fM">
 										评论：<span class="totalResultComment">0</span>
 									</tt> <tt class="c-999 f-fM ml20">
-										点赞：<span class="addPraise${eac.edu_article.article_id}_3 praiseCount">0</span>
+										点赞：<span class="addPraise(${eac.edu_article.article_id})_3 praiseCount">0</span>
 									</tt> <tt class="c-999 f-fM ml20">
 										阅读：<span class="clickNum"></span>
 									</tt>

@@ -55,6 +55,7 @@
 <script type="text/javascript">
 
 	$(function() {
+		$("#yan").hide();
 		$("#div1").hide();
 		$("#type").change(function() {
 			var type = $(this).val();
@@ -72,7 +73,7 @@
 	var b = "";
 	function xianshi() {		
 		var emass = $("#eid").val();
-		alert(emass);
+		
 		if (emass == 0) {
 			alert("请选择联系人")
 		} else {
@@ -89,13 +90,23 @@
 		return false;
 		 }
 		 }
-	
+	function yanzheng() {
+	  
+		if ($("#title").val().length>5) {
+			$("#yan").show();
+		} else{
+			$("#yan").hide();	
+		}
+	}
 </script>
     <style>
    #d1{
    margin: 80px 100px;   
    }
    #span1,#span2,#span3,#span4,#span5{
+    color: red;
+   }
+   #yan{
     color: red;
    }
     </style>
@@ -115,7 +126,7 @@
 								 
 								<textarea name="email" id="email" rows="8"
 										cols="50" style="width: 600px; height: 50px;" class="form-control"
-										placeholder="请选输入对方邮箱,多个请用(;)分号隔开" onb></textarea>
+										placeholder="请选输入对方邮箱,多个请用(;)分号隔开" ></textarea>
 							
 								</td>
 								<td></td>
@@ -195,8 +206,8 @@
 				<input type="text" name="title" id="title" 
 						value="" placeholder="请输入邮件标题" class="form-control"
 						 class="form-control" 
-						style="width:160px; height: 30px " />
-				
+						style="width:500px; height: 30px " onclick="yanzheng()"/>
+						  <span id="yan">标题长度不能超出20字!</span>
 						</td>
 				</tr>
 				<tr>
@@ -216,12 +227,12 @@
 					
 				</tr>
 				<Tr height="50px">
-				
-					<td colspan="2">
+				         <Td></Td>
+					<td >
 						<div id="div1">
-						<span id="span5">*</span>
-						时间:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-						<input type="text" name="starttime" id="starttime"
+						
+						<input type="text" name="starttime" id="starttime"  class="form-control" 
+						style="width: 160px;"    placeholder="请选择定时时间"
 								onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
 						</div>
 					</td>

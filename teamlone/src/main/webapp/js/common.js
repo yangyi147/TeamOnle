@@ -242,6 +242,7 @@ function goPageAjax(pageNum){
  * obj 当前标签对象
  */
 function addPraise(targetId,type,obj){
+	alert(isLogin());
 	if(isLogin()){
 		$.ajax({
 			url:baselocation + "/praise/ajax/add",

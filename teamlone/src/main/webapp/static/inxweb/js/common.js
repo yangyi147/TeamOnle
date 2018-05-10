@@ -486,7 +486,7 @@ function dialogLogin(type){
         return false;
     }
 	$.ajax({
-		url:baselocation+'/uc/login',
+		url:'/front/login',
 		type:'post',
 		dataType:'json',
 		data:{
@@ -499,9 +499,10 @@ function dialogLogin(type){
 				$(".e-l-jy").html('<font class="fsize12 c-orange">'+result.message+'</font>');
 			}else{
 				if(type==1){
-					window.location.href="/uc/index";
+					window.location.href="/front/front";
 				}else{
 					window.location.reload();
+
 				}
 			}
 		},
@@ -528,6 +529,7 @@ function dialogRegister() {
 	};
 	
 	var mobileVal=$("#u-mobile-reg").val();
+	alert(mobileVal)
 	if(mobileVal==""){//验证手机是否为空
 		$("#u-mobile-reg").next().html('<span class="c-orange"><em class="icon16 u-a-cw">&nbsp;</em>请输入用户手机号！</span>');
 		return;
@@ -537,7 +539,7 @@ function dialogRegister() {
 		$("#u-mobile-reg").next().html('<span class="c-orange"><em class="icon16 u-a-cw">&nbsp;</em>请输入正确的手机！</span>');
 		return;
 	};
-	
+	alert($("#u-password-reg").val())
 	if($("#u-password-reg").val().trim()==""){//验证密码是否为空
 		$("#u-password-reg").next().html('<span class="c-orange"><em class="icon16 u-a-cw">&nbsp;</em>请输入密码！</span>');
 		return;
@@ -561,8 +563,10 @@ function dialogRegister() {
 //	}"registerCode":$("#u-randomcode-reg").val(),
 
 	$.ajax({
-		url : baselocation + "/uc/createuser",
-		data : {"user.email":$("#u-email-reg").val(),"user.password":$("#u-password-reg").val(),
+		url :  "/front/uc/createuser",
+		data : {
+			"user.email":$("#u-email-reg").val(),
+			"user.password":$("#u-password-reg").val(),
 			"confirmPwd":$("#u-passwordre-reg").val(),
 			"user.mobile":$("#u-mobile-reg").val()},
 		type : "post",
@@ -570,16 +574,19 @@ function dialogRegister() {
 		cache : false,
 		async : false,
 		success : function(result) {
+		
 			if(result.success==true) {
 				window.location.reload();
+		
 			}else {
-				$(".e-l-jy").html('<font class="fsize12 c-orange">'+result.message+'</font>');
+				$(".e-l-jy").html('<font class="fsize12 c-orange">此账号已注册！</font>');
 			}
 		},
 		error : function(error) {
-			$(".e-l-jy").html('<font class="fsize12 c-orange">系统繁忙，请稍后再操作</font>');
+			$(".e-l-jy").html('<font class="fsize12 c-orange">系统繁忙，请稍后再操作！</font>');
 		}
 	});
+
 }
 
 /**

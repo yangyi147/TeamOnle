@@ -10,8 +10,10 @@ var uploadServerUrl="";//上传服务用服务器地址
  */
 function isLogin(){
 	var is = false;
+	alert(getLoginUser()+"++++");
 	var user = getLoginUser();
-	if(user!=null && user.userId>0){
+	alert(user.user_id);
+	if(user!=null && user.user_id>0){
 		is=true;
 	}
 	return is;
