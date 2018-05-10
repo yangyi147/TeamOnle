@@ -41,6 +41,7 @@
 </head>
 <script type="text/javascript">
 		$("myModal").modal("hide");
+
 		function xiugai(id) {
 			$("#user_id").val(id);
 		}
@@ -121,14 +122,13 @@
 								class="form-control" style="width: 150px"
 								onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
 								placeholder="开始注册时间" /></td>
-							<td>--</td>
-							<td><input type="text" name="end" id="end"
+							<td>--<input type="text" name="end" id="end"
 								class="form-control" style="width: 150px"
 								onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
 								placeholder="结束注册时间" /></td>
 							<td><button type="submit" class="btn btn-info">查找学员</button></td>
-							<td><button type="reset" class="btn btn-info" >清空</button></td>
-							<td><a href="/admin/users/getAction" class="btn btn-info" >导出Excel</a></td>
+							<td><button type="reset" class="btn btn-info">清空</button></td>
+							<td><a href="/admin/users/getAction" class="btn btn-info">导出Excel</a></td>
 						</tr>
 
 					</table>
@@ -181,13 +181,11 @@
 											<!-- Button trigger modal -->
 											<button type="button" class="layui-btn" data-toggle="modal"
 												onclick="xiugai(${p.user_id})" data-target="#myModal">
-												修改密码</button>
-												 <c:if test="${p.is_avalible==1}">
+												修改密码</button> <c:if test="${p.is_avalible==1}">
 												<a
 													href="/admin/users/updateid/${p.user_id}/${p.is_avalible}"
 													class="layui-btn layui-btn-primary">冻结</a>
-											</c:if> 
-											<c:if test="${p.is_avalible==0}">
+											</c:if> <c:if test="${p.is_avalible==0}">
 												<a
 													href="/admin/users/updateid/${p.user_id}/${p.is_avalible}"
 													class="layui-btn layui-btn-primary">解冻</a>
@@ -196,38 +194,38 @@
 									</tr>
 								</c:forEach>
 							</tbody>
-    
+
 
 						</table>
-						
-						    <table class="layui-table table-hover" lay-even="" lay-skin="nob">
-                      <tr>
-                      
-                      <td ><c:if test="${page.isFirstPage==true }">
-						<a>首页</a>
-					</c:if> <c:if test="${page.isFirstPage==false }">
-						<a href="/admin/users/list?page=${page.firstPage }">首页</a>
-					</c:if>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:if
-						test="${page.hasPreviousPage==true }">
-						<a href="/admin/users/list?page=${page.prePage }">上一页</a>
-					</c:if> <c:if test="${page.hasPreviousPage==false }">
-						<a>上一页</a>
-					</c:if> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					每页${page.pageSize }条
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${page.pageNum }/${page.pages }
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:if
-						test="${page.hasNextPage==true }">
-						<a href="/admin/users/list?page=${page.nextPage }">下一页</a>
-					</c:if> <c:if test="${page.hasNextPage==false }">
-						<a>下一页</a>
-					</c:if>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:if
-						test="${page.isLastPage==false }">
-						<a href="/admin/users/list?page=${page.lastPage }">末页</a>
-					</c:if> <c:if test="${page.isLastPage==true }">
-						<a>末页</a>
-					</c:if></td>
-                             </tr>
-                      </table>
+
+						<table class="layui-table table-hover" lay-even="" lay-skin="nob">
+							<tr>
+
+								<td><c:if test="${page.isFirstPage==true }">
+										<a>首页</a>
+									</c:if> <c:if test="${page.isFirstPage==false }">
+										<a href="/admin/users/list?page=${page.firstPage }">首页</a>
+									</c:if>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:if
+										test="${page.hasPreviousPage==true }">
+										<a href="/admin/users/list?page=${page.prePage }">上一页</a>
+									</c:if> <c:if test="${page.hasPreviousPage==false }">
+										<a>上一页</a>
+									</c:if> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									每页${page.pageSize }条
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${page.pageNum }/${page.pages }
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:if
+										test="${page.hasNextPage==true }">
+										<a href="/admin/users/list?page=${page.nextPage }">下一页</a>
+									</c:if> <c:if test="${page.hasNextPage==false }">
+										<a>下一页</a>
+									</c:if>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:if
+										test="${page.isLastPage==false }">
+										<a href="/admin/users/list?page=${page.lastPage }">末页</a>
+									</c:if> <c:if test="${page.isLastPage==true }">
+										<a>末页</a>
+									</c:if></td>
+							</tr>
+						</table>
 					</form>
 					<!-- <div class="larry-table-page clearfix ">
 						<div id="page" class="page"></div>
@@ -271,7 +269,7 @@
 	</div>
 	</section>
 	<script type="text/javascript" src="/comm/layui/layui.js "></script>
-	
+
 	<!-- 		<script type="text/javascript "> 
 			var tid = document.getElementById("tid ");
 			tid.value = '${tid}';

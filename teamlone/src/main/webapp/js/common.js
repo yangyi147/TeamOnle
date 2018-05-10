@@ -571,7 +571,7 @@ function dialogRegister() {
 			if(result.success==true) {
 				window.location.reload();
 			}else {
-				$(".e-l-jy").html('<font class="fsize12 c-orange">'+result.message+'</font>');
+				$(".e-l-jy").html('<font class="fsize12 c-orange">此账号已注册</font>');
 			}
 		},
 		error : function(error) {
