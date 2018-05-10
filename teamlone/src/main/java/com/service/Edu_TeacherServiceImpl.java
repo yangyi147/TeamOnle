@@ -18,9 +18,9 @@ public class Edu_TeacherServiceImpl implements Edu_TeacherService {
 	 *按照所有教师
 	 *c
 	 */
-	public List<Edu_Teacher> getAllTeacher() {
+	public List<Edu_Teacher> getAllTeacherBySubjectId() {
 		// TODO Auto-generated method stub
-		return teacherDao.getAllTeacher();
+		return teacherDao.getAllTeacherBySubjectId();
 	}
 
 }

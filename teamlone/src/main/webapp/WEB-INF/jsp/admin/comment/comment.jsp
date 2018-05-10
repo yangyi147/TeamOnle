@@ -87,10 +87,6 @@ function find(){
 				</div>
 						</div>
 						<a class="layui-btn search_btn" onclick="find()">查询</a>
-						<div class="layui-inline">
-							<a class="layui-btn layui-btn-normal newsAdd_btn"
-								href="/admin/getSuAll">添加老师</a>
-						</div>
 					</div>
 				</blockquote>
 				<div
@@ -132,35 +128,6 @@ function find(){
 						</table>
 					</div>
 				</div>
-				<!-- 登录日志 -->
-				<div class="layui-tab-item layui-field-box">
-					<table class="layui-table table-hover" lay-even="" lay-skin="nob">
-						<thead>
-							<tr>
-								<th><input type="checkbox" id="selected-all"></th>
-								<th>ID</th>
-								<th>管理员账号</th>
-								<th>状态</th>
-								<th>最后登录时间</th>
-								<th>上次登录IP</th>
-								<th>登录IP</th>
-								<th>IP所在位置</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>110</td>
-								<td>admin</td>
-								<td>后台登录成功</td>
-								<td>2016-12-19 14:26:03</td>
-								<td>127.0.0.1</td>
-								<td>127.0.0.1</td>
-								<td>Unknown</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
 				<div class="larry-table-page clearfix">
 					<div id="page" class="page"></div>
 				</div>
@@ -194,7 +161,6 @@ function find(){
 	   if(a!=''){
 		   $("#sel").val('${qtype}');
 		   }
-	   
 </script>
 </body>
 </html>

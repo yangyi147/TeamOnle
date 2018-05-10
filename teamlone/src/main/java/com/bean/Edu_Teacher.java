@@ -2,6 +2,8 @@ package com.bean;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+@Component
 public class Edu_Teacher {
 	
 	private int id; //ΩÃ ¶id

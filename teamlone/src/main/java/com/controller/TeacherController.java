@@ -64,13 +64,7 @@ public class TeacherController {
 	 String pname=request.getParameter("qname");
 	 String ptype=request.getParameter("qtype");
 	 String  ptname=request.getParameter("th_name");
-	 System.out.println(startdate);
-	 System.out.println(stopdate);
-	 System.out.println(id);
-	 System.out.println(pname);
-	 System.out.println(ptype);
-	 System.out.println(ptname);
-		request.setAttribute("qtype", ptype);
+	 request.setAttribute("qtype", ptype);
 		if (id==null) {
 			id="-1";
 		}
@@ -94,7 +88,7 @@ public class TeacherController {
             String path = request.getRealPath("/images/");
             String filename = file.getOriginalFilename();
             File filepath = new File(path,filename);
-            Sys_Subject  sub= (Sys_Subject) sys_Subjectervice.getSubjectById(sd);
+            Sys_Subject  sub= sys_Subjectervice.getSubjectById(sd).get(0);
             teacher.setPic_path("/images/"+filename);
             teacher.setSubject_id(sub);
             teacher.setCreate_time(day);
@@ -124,6 +118,7 @@ public class TeacherController {
             	newfile.createNewFile();
             }
             file.transferTo(newfile);
+            System.out.println("123123");
             node.setCode("1");
             node.setUrl(filename);
             return node;
@@ -135,7 +130,7 @@ public class TeacherController {
 	@RequestMapping(value="/upTer")
 	   public String upTer(Teacher teacher,@RequestParam("sd")int sd) throws Exception {
         	Date day=new Date();    
-   		    Sys_Subject sub=(Sys_Subject) sys_Subjectervice.getSubjectById(sd);
+   		    Sys_Subject sub=sys_Subjectervice.getSubjectById(sd).get(0);
    		    teacher.setPic_path("/images/"+teacher.getPic_path());
             teacher.setSubject_id(sub);
             teacher.setUpdate_time(day);

@@ -9,8 +9,8 @@ import com.github.pagehelper.PageInfo;
 
 public interface ImagesService {
 	 public PageInfo<Images> getlistAll(Map map,int page);
-	  public  Images getById(int id);
-	  public void delTe(int id);
-	  public void inTer(Images images);
-	  public void upTer(Images images);
+	 public  Images getById(int id);
+	  public void delImg(int id);
+	  public void inImg(Images images);
+	  public void upImg(Images images);
 }

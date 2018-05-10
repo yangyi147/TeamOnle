@@ -2,7 +2,9 @@ package com.bean;
 
 public class Imges_type {
 	private int type_id;
+
 	private  String  type_name;
+
 	public int getType_id() {
 		return type_id;
 	}

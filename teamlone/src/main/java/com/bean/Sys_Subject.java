@@ -2,6 +2,8 @@ package com.bean;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+@Component
 public class Sys_Subject {
 	private int  id;
 	private String name;
@@ -9,6 +11,15 @@ public class Sys_Subject {
 	private Date create_time;
 	private int pId;
 	private int sort;
+	private boolean checked;
+	
+	
+	public boolean isChecked() {
+		return checked;
+	}
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
 	public int getId() {
 		return id;
 	}

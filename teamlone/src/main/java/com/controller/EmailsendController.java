@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.quartz.JobBuilder;
+import org.quartz.JobDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.quartz.JobBuilder;
-import org.quartz.JobDetail;
+
 
 
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,17 +34,17 @@ import com.util.QuartzManager;
 @Controller
 @RequestMapping("/admin/email")
 public class EmailsendController {
-	public static String JOB_NAME = "¶¯Ì¬ÈÎÎñµ÷¶È";  
-	public static String TRIGGER_NAME = "¶¯Ì¬ÈÎÎñ´¥·¢Æ÷";  
+	public static String JOB_NAME = "é”Ÿæ–¤æ‹·æ€é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿï¿½";  
+	public static String TRIGGER_NAME = "é”Ÿæ–¤æ‹·æ€é”Ÿæ–¤æ‹·é”Ÿä»Šè§¦å‡¤æ‹·é”Ÿæ–¤æ‹·";  
 	public static String JOB_GROUP_NAME = "XLXXCC_JOB_GROUP";  
 	public static String TRIGGER_GROUP_NAME = "XLXXCC_JOB_GROUP"; 
 	@Autowired
-	   EmailsendServiceImpl emailsendServiceImpl;
+	EmailsendServiceImpl emailsendServiceImpl;
 	@Autowired
-	      UserServiceImpl   userServiceImpl;
+	UserServiceImpl   userServiceImpl;
 	@RequestMapping("/list")
 	public ModelAndView list(HttpServletRequest request) throws Exception  {
-       //	ÓÊ¼şÏÔÊ¾	 
+		//	é‚®ä»¶æ˜¾ç¤º	 
 		ModelAndView mv =new ModelAndView();
 		Map map = new HashMap<>();
 		map=initMap(map, request);
@@ -58,19 +59,19 @@ public class EmailsendController {
 		model.addAttribute("emailsend", emailsend);
 		return "/common/examiner";
 	}
-private Map initMap(Map map,HttpServletRequest request) throws Exception {
-     //	 Ä£ºı²éÑ¯
-	   String email = request.getParameter("email");
-	   String type = request.getParameter("type");
-	   String status = request.getParameter("status"); 
+	private Map initMap(Map map,HttpServletRequest request) throws Exception {
+		//	æ¨¡ç³ŠæŸ¥è¯¢
+		String email = request.getParameter("email");
+		String type = request.getParameter("type");
+		String status = request.getParameter("status"); 
 		String start =request.getParameter("start");
 		String end =request.getParameter("end");
-	
-	   if (email!=null&&email.length()>0) {
+
+		if (email!=null&&email.length()>0) {
 			map.put("email", email);
 			request.setAttribute("email", email);
 		}
-	   if (type!=null&&type.length()>0) {
+		if (type!=null&&type.length()>0) {
 			map.put("type", Integer.valueOf(type));
 			request.setAttribute("type", type);
 		}if (status!=null&&status.length()>0) {
@@ -84,11 +85,12 @@ private Map initMap(Map map,HttpServletRequest request) throws Exception {
 			map.put("end", end);
 			request.setAttribute("end", end);
 		}
+
 	return map;
 	
 }
 /**
- * Ìø×ªµ½·¢ËÍÓÊ¼ş½çÃæ
+ * è·³è½¬åˆ°å‘é€é‚®ä»¶ç•Œé¢
  * @return
  * @throws Exception
  */
@@ -102,7 +104,7 @@ public ModelAndView add(HttpServletRequest request)throws Exception {
 	return mv;
 }
 /**
- * ·¢ËÍÓÊ¼ş
+ * å‘é€é‚®ä»¶
  * @throws Exception 
  */
 @RequestMapping(value="/sendEmail",produces="application/json;charset=UTF-8")
@@ -114,31 +116,32 @@ public String sendEmail(Model model, HttpServletRequest request,Emailsend e) thr
 		System.out.println(emailArray[i]);
 		e.setEmail(emailArray[i]);
 		if(e.getType()==1){	
-			JavaEmailSender.sendEmail(e); //ÓÊ¼ş·¢ËÍ
+			JavaEmailSender.sendEmail(e); //é‚®ä»¶å‘é€
 			e.setSend_time(new Date());
-	
+
 		}else{
 			String date=e.getStarttime();
 			date=date.replace("T"," ");
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			e.setSend_time(sdf.parse(date));
 			JobDetail job = JobBuilder.newJob(MyJob.class)
-				    .withIdentity("myJob", "group1")
-				    .usingJobData("title",e.getTitle())
-				    .usingJobData("content",e.getContent())
-				    .usingJobData("email",e.getEmail())
-				    .build();
+					.withIdentity("myJob", "group1")
+					.usingJobData("title",e.getTitle())
+					.usingJobData("content",e.getContent())
+					.usingJobData("email",e.getEmail())
+					.build();
 			String[] dates=date.split(" ");
 			String[] date_year=dates[0].split("-");
 			String[] date_time=dates[1].split(":");//0 51 15 26 4 ? 2016
 			String cons="0 "+date_time[1]+" "+date_time[0]+" "+date_year[2]+" "+date_year[1]+" ?"+" "+date_year[0];
 			QuartzManager.addJob(JOB_NAME, JOB_GROUP_NAME, TRIGGER_NAME, TRIGGER_GROUP_NAME, job,cons); 
 		}
-		
 		e.setCreate_time(new Date());
 		emailsendServiceImpl.insave(e);
 		model.addAttribute("e", e);
 	}
 	return "redirect:/admin/email/list";
 }
+	
+
 }

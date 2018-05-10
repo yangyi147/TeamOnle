@@ -46,28 +46,28 @@
 											<li>
 												<aside class="q-head-pic">
 													<c:choose>
-														<c:when test="${not empty question.picImg }">
-															<img src="<%=staticImage %>${question.picImg }" alt="">
+														<c:when test="${not empty question.edu_user.pic_img }">
+															<img src="<%=staticImage %>${question.edu_user.pic_img  }" alt="">
 														</c:when>
 														<c:otherwise>
 															<img src="${ctx }/static/inxweb/img/avatar-boy.gif" alt="">
 														</c:otherwise>
 													</c:choose>
 													<p class="hLh30 txtOf">
-														<span class="c-999"> <c:if test="${empty question.showName }">${question.email }</c:if> <c:if test="${not empty question.showName }">${question.showName }</c:if>
+														<span class="c-999"> <c:if test="${empty question.edu_user.show_name }">${question.edu_user.email }</c:if> <c:if test="${not empty question.edu_user.show_name }">${question.edu_user.show_name }</c:if>
 														</span>
 													</p>
 												</aside>
 												<section class="q-txt-box">
-													<a class="replyBrowseNum" href="${ctx }/questions/info/${question.id }" title="">
+													<a class="replyBrowseNum" href="${ctx }/questions/info/${question.questions.id}" title="">
 														<div class="replyNum">
-															<span class="r-b-num">${question.replyCount }</span>
+															<span class="r-b-num">${question.questions.reply_count }</span>
 															<p class="hLh30">
 																<span class="c-999 f-fA">回答数</span>
 															</p>
 														</div>
 														<div class="browseNum">
-															<span class="r-b-num">${question.browseCount }</span>
+															<span class="r-b-num">${question.questions.browse_count }</span>
 															<p class="hLh30">
 																<span class="c-999 f-fA">浏览数</span>
 															</p>
@@ -75,27 +75,27 @@
 													</a>
 													<h3 class="hLh30 txtOf">
 														<em class="icon16 q-tw">&nbsp;</em>
-														<a href="${ctx }/questions/info/${question.id }" title="" class="fsize16 c-333 vam">${question.title }</a>
+														<a href="${ctx }/questions/info/${question.questions.id }" title="" class="fsize16 c-333 vam">${question.questions.title }</a>
 													</h3>
 													<h3 class="hLh30 txtOf mt5">
 														<em class="icon16 q-hd">&nbsp;</em>
-														<c:if test="${empty question.questionsCommentList }">
+														<c:if test="${empty question.questions.content }">
 															<span class="fsize12 c-999 vam">哈~~~ 此问题大家还有苦思冥想中...</span>
 															<!-- 没有回答时的内容 -->
 														</c:if>
-														<c:if test="${not empty question.questionsCommentList }">
-															<c:if test="${question.status==0 }">
+														<c:if test="${not empty question.questions.content }">
+															<c:if test="${question.questions.status==0 }">
 																<span class="fsize12 c-999 vam"> <tt class="c-ccc f-fM mr5">[最新回答]</tt> <c:forEach items="${question.questionsCommentList }" var="questionsComment">
-																		<c:out value="${questionsComment.content }"></c:out>
+																		<c:out value="${question.content }"></c:out>
 																	</c:forEach>
 																</span>
 																<!-- 有回答时显示最新一条的回答内容 -->
 															</c:if>
 
-															<c:if test="${question.status==1 }">
+															<c:if test="${question.questions.status==1 }">
 																<span class="fsize12 c-999 vam"> <tt class="c-green f-fM mr5">[最佳回答]</tt> 
-																<c:forEach items="${question.questionsCommentList }" var="questionsComment">
-																	<c:out value="${questionsComment.content }"></c:out>
+																<c:forEach items="${questionsList}" var="questionsComment">
+																	<c:out value="${question.content }"></c:out>
 																	</c:forEach>
 																</span>
 																<!-- 采纳最佳显示最佳答案内容 -->
@@ -103,11 +103,11 @@
 														</c:if>
 													</h3>
 													<div class="mt15">
-														<span class="c-ccc fl vam">${question.modelTime }</span>
+														<span class="c-ccc fl vam">${question.add_time }</span>
 														<section class="fl ml20 pt10">
 															<div class="taglist clearfix">
-																<c:forEach items="${question.questionsTagRelationList }" var="questionsTag">
-																	<a title="${questionsTag.tagName }" data-id="${questionsTag.questionsTagId }" onclick="submitForm('${questionsTag.questionsTagId }','questionsTagId')" class="list-tag" href="javascript:;">${questionsTag.tagName }</a>
+																<c:forEach items="${question.questions_tags }" var="questionsTag">
+																	<a title="${questionsTag.questions_tag_name }" data-id="${questionsTag.questions_tag_id }" onclick="submitForm('${questionsTag.questions_tag_id }','questionsTagId')" class="list-tag" href="javascript:;">${questionsTag.questions_tag_name }</a>
 																</c:forEach>
 															</div>
 														</section>

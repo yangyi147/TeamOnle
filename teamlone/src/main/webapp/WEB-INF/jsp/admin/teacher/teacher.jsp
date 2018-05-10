@@ -117,7 +117,7 @@ function find(){
 									<tr>
 										<td><input type="checkbox"></td>
 										<th>${stea.index+1 }</th>
-										<th>${p.name}</th>
+										<th >${p.name}</th>
 										<th>${p.th_name}</th>
 										<th width="200px">${p.education}</th>
 										<th width="400px">${p.career}</th>

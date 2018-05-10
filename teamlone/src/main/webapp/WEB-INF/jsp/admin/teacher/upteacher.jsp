@@ -99,7 +99,7 @@
 		<header class="larry-personal-tit"> <span>修改个人信息</span> </header>
 		<!-- /header -->
 		<div class="larry-personal-body clearfix">
-			<form class="layui-form col-lg-5" action="/admin/upTer"   method="post" >
+			<form class="layui-form col-lg-5" action="/admin/upTer" enctype="multipart/form-data"   method="post" >
 				<div class="layui-form-item">
 					<label class="layui-form-label">姓名</label>
 					<div class="layui-input-block">
@@ -107,7 +107,7 @@
 							lay-verify="required" value="${te.name }">
 					</div>
 				</div>
-				 <input type="hidden" name="pic_path" id="filename" hidden="hidden"/>
+				 <input type="hidden" name="pic_path" id="filename" hidden="hidden"  value="${te.pic_path}"/>
 				  <input type="hidden" name="id" value="${te.id}" hidden="hidden"/>
 				<div class="layui-form-item">
 					<label class="layui-form-label">资历</label>

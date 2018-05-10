@@ -19,7 +19,7 @@ public interface Sys_Subjectervice {
 	/**
 	 *按照专业的父id查询所有子属性
 	 */
-	List<Sys_Subject>getAllSubjictByparent_Id(int id);
+	List<Sys_Subject>getAllSubjictByparent_Id();
 	
 	/**
 	 * @param subject

@@ -26,7 +26,8 @@
 	media="all">
 <script src="/js/jquery-3.0.0.min.js" type="text/javascript"
 	charset="utf-8"></script>
-	<script language="javascript" type="text/javascript" src="/My97DatePicker/WdatePicker.js"></script>
+<script language="javascript" type="text/javascript"
+	src="/My97DatePicker/WdatePicker.js"></script>
 </head>
 <script type="text/javascript">
 function fun(a) {   
@@ -37,7 +38,7 @@ function fun(a) {
             shadeClose: true,  
             //回调函数  
             yes: function(index, layero){  
-            	window.location.href='/admin/delTe/'+a;  
+            	window.location.href='/admin/delImg/'+a;  
             },  
             btn2: function(index, layero){  
             },  
@@ -46,7 +47,7 @@ function fun(a) {
     });   
 } 
 function find(){
-	document.forms[0].action="/admin/teacher";
+	document.forms[0].action="/admin/imglist";
 	document.forms[0].submit();
 }
 </script>
@@ -58,39 +59,26 @@ function find(){
 				<blockquote class="layui-elem-quote news_search">
 					<div class="layui-inline">
 						<div class="layui-input-inline">
-							<input value="${qname}" name="qname" id="qname"
-								placeholder="请输入姓名" class="layui-input search_input"
-								type="text">
+							<input value="${title}" name="title" 
+								placeholder="请输入图片标题" class="layui-input search_input" type="text">
 						</div>
 						<div class="layui-input-inline">
-							<input value="${qtype}" name="qtype" id="qtype"
-								placeholder="请输入关资历" class="layui-input search_input"
+							<input value="${desc}" name="desc" 
+								placeholder="请输入图片描述内容" class="layui-input search_input"
 								type="text">
 						</div>
 						<div class="layui-inline">
-							<select name="th_name" class="layui-select" id="sel">
-								<option value="">请选状态</option>
-								<option value="首席讲师">首席讲师</option>
-								<option value="高级讲师">高级讲师</option>
-								<option value="普通讲师">普通讲师</option>
-							</select>
-						</div>
-						<div class="layui-input-inline">
-				<label class="layui-inline">开始时间:</label>
-				<div class="layui-input-inline">
-					<input class="Wdate layui-input " type="text" onClick="WdatePicker()" name="startdate" value="${startdate}">
-				</div>
-						</div>
-							<div class="layui-input-inline">
-				<label class="layui-inline">结束时间:</label>
-				<div class="layui-input-inline">
-					<input class="Wdate layui-input " type="text" onClick="WdatePicker()" name="stopdate" value="${startdate}">
-				</div>
+							<select name="type_id" class="layui-select" id="sel">
+							<option value="-1">请选择</option>
+							<c:forEach items="${ty}" var="ty">
+								<option value="${ty.type_id }">${ty.type_name}</option>
+							</c:forEach>
+						</select>
 						</div>
 						<a class="layui-btn search_btn" onclick="find()">查询</a>
 						<div class="layui-inline">
 							<a class="layui-btn layui-btn-normal newsAdd_btn"
-								href="/admin/getSuAll">添加老师</a>
+								href="/admin/img/insert">添加图片</a>
 						</div>
 					</div>
 				</blockquote>
@@ -98,43 +86,34 @@ function find(){
 					class="layui-tab-content larry-personal-body clearfix mylog-info-box">
 					<!-- 操作日志 -->
 					<div class="layui-tab-item layui-field-box layui-show">
-						<table class="layui-table table-hover" lay-even="" lay-skin="nob"
+						<table  class="layui-table table-hover" lay-even="" lay-skin="nob"
 							id="tab">
-							<thead>
 								<tr>
-									<th><input type="checkbox" id="selected-all"></th>
-									<th>ID</th>
-									<th>图片</th>
-									<th>图片链接地址</th>
-									<th>图片标题</th>
-									<th>图片类型</th>
-									<th>序列号</th>
-									<th>略缩图片地址</th>
-									<th>背景色</th>
-									<th>图片描述</th>
-									<th>删除</th>
-									<th>修改</th>
+									<td>ID</td>
+									<td>图片</td>
+									<td>图片标题</td>
+									<td>图片类型</td>
+									<td>背景色</td>
+									<td>图片描述</td>
+									<td>删除</td>
+									<td>修改</td>
 								</tr>
 								<c:forEach items="${tc.list}" var="p" varStatus="stea">
 									<tr>
-										<td><input type="checkbox"></td>
-										<th>${stea.index+1 }</th>
-										<th>${p.name}</th>
-										<th>${p.th_name}</th>
-										<th width="200px">${p.education}</th>
-										<th width="400px">${p.career}</th>
-										<th><fmt:formatDate value="${p.create_time}"
-												pattern="yyyy/MM/dd HH:mm" /></th>
-										<th>${p.sort}</th>
-										<th><button class="layui-btn layui-btn-sm" type="button"
-												onclick="fun(${p.id})">
+										<td >${stea.index+1 }</td>
+										<td ><img src="/images/img/${p.image_url}" width="100" height="100" style="padding-top: 10px"/></td>
+										<td >${p.title}</td>
+										<td >${p.t_id.type_name}</td>
+										<td >${p.color}</td>
+										<td >${p.describes}</td>
+										<td><button class="layui-btn layui-btn-sm" type="button"
+												onclick="fun(${p.image_id})">
 												<i class="layui-icon">&#xe640;</i>
-											</button></th>
-										<th><a href="/admin/teacher/getById/${p.id}"
-											class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe642;</i></a></th>
+											</button></td>
+										<td><a href="/admin/getImg/${p.image_id}"
+											class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe642;</i></a></td>
 									</tr>
 								</c:forEach>
-							</thead>
 						</table>
 					</div>
 				</div>
@@ -190,17 +169,16 @@ function find(){
 							//得到了当前页，用于向服务端请求对应数据
 							var curr = obj.curr;
 							if(!first) {
-								document.forms[0].action="/admin/teacher?page="+curr;
+								document.forms[0].action="/admin/imglist?page="+curr;
 								document.forms[0].submit();
 							}
 						}
 					});
 	 });
-	   var a='${qtname}';
+	   var a='${type_id}';
 	   if(a!=''){
-		   $("#sel").val('${qtname}');
+		   $("#sel").val('${type_id}');
 		   }
-	   
 </script>
 </body>
 </html>

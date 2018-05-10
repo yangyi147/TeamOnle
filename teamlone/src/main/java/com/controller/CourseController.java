@@ -1,8 +1,12 @@
 package com.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bean.Edu_Course;
 import com.bean.Edu_Teacher;
@@ -21,6 +26,7 @@ import com.bean.Sys_Subject;
 import com.github.pagehelper.PageInfo;
 import com.mapper.Edu_TeacherDao;
 import com.service.Edu_CourseService;
+import com.service.Edu_TeacherService;
 import com.service.Edu_course_KpointService;
 import com.service.Sys_Subjectervice;
 import com.util.JsonUtils;
@@ -35,7 +41,8 @@ public class CourseController {
 	@Autowired
 	Edu_course_KpointService course_KpointService;
 	@Autowired
-	Edu_TeacherDao teacherDao;
+	Edu_TeacherService teacherService;
+
 	@RequestMapping("/list")
 	public String list(@RequestParam(name="page",defaultValue="0")int page,HttpServletRequest request) {
 		Map map=init(request);
@@ -48,33 +55,104 @@ public class CourseController {
 	}
 	@RequestMapping("/chapter/{id}/{aid}/{cid}")
 	public String chapter(@PathVariable("id")int id,@PathVariable("aid")int aid,@PathVariable("cid")int cid,HttpServletRequest request) {
-		List<Sys_Subject> allSubjictByparent_Id = subjectService.getAllSubjictByparent_Id(id);
-		List<Sys_Subject> allSubjict = subjectService.getAllSubjict();
+		System.out.println("id:"+id+",aid:"+aid+",cid:"+cid);
+		List<Sys_Subject> allSubjictByparent_Id = subjectService.getAllSubjictByparent_Id();
+		List<Sys_Subject> allSubjict = subjectService.getAllSubjictByparent_Id();
+		for (int i = 0; i < allSubjict.size(); i++) {
+			if (allSubjict.get(i).getId()==id) {
+				allSubjict.get(i).setChecked(true);
+				request.setAttribute("sname", allSubjict.get(i).getName());
+			}
+		}
 		Edu_Course courseByID = courseService.getCourseByID(cid);
-		List<Edu_Teacher> allTeacher = teacherDao.getAllTeacher();
+		List<Edu_Teacher> allTeacher = teacherService.getAllTeacherBySubjectId();
 		System.out.println("allTeacher:"+allTeacher);
+		String json=JsonUtils.objectToJson(allSubjict);
 		request.setAttribute("allTeacher", allTeacher);
         request.setAttribute("courseByID", courseByID); 		
 		request.setAttribute("allSubjictByparent_Id", allSubjictByparent_Id);
-		request.setAttribute("allSubjict", allSubjict);
+		request.setAttribute("allSubjict", json);
 		request.setAttribute("aid",aid);
 		request.setAttribute("id",id);
 		return "/admin/Chapter";
 	}
+	@RequestMapping("/editChapter")
+	public String editChapter(MultipartFile file,Edu_Course course,String end_times,int tid,String ssid,HttpServletRequest request) {
+		courseService.editChapter(file, course, end_times, ssid, tid, request);
+		return "redirect:/admin/course/list";
+	}
 	@RequestMapping("/chapte/{id}")
 	public String chapte(@PathVariable("id")int id,HttpServletRequest request) {
 		List<Edu_course_Kpoint> allEdu_course_KpointByCourseID = course_KpointService.getAllEdu_course_KpointByCourseID(id);
+		List<Edu_Teacher> allTeacherBySubjectId = teacherService.getAllTeacherBySubjectId();
+		System.out.println("allEdu_course_KpointByCourseID:"+allEdu_course_KpointByCourseID);
 		String json= JsonUtils.objectToJson(allEdu_course_KpointByCourseID);
+		request.setAttribute("allTeacherBySubjectId", allTeacherBySubjectId);
 		request.setAttribute("allEdu_course_KpointByCourseID", json);
+		request.setAttribute("id", id);
 		return "/admin/chapte";
 	}
+
+	@RequestMapping("/addCourse")
+	public String addCourse(HttpServletRequest request) {
+		List<Sys_Subject> allSubjict = subjectService.getAllSubjictByparent_Id();
+		List<Edu_Teacher> allTeacher = teacherService.getAllTeacherBySubjectId();
+		allSubjict.get(0).setChecked(true);
+		String json=JsonUtils.objectToJson(allSubjict);
+		request.setAttribute("allSubjict", json);
+		request.setAttribute("allTeacher", allTeacher);
+		return "/admin/addCourse";
+	}
+	@RequestMapping("/addCourseTo")
+	public String addCourseTo(MultipartFile file,Edu_Course course,String end_times,int tid,String ssid,HttpServletRequest request) {
+		courseService.insertCourse(file, course, end_times, tid, ssid, request);
+		return "redirect:/admin/course/list";
+	}
+	@RequestMapping("/getCourseNameRepeat")
 	@ResponseBody
-	@RequestMapping("/getcourse")
-	public List<Sys_Subject> getcourse(int id) {
-		System.out.println("id:"+id);
-		List<Sys_Subject> allSubjictByparent_Id = subjectService.getAllSubjictByparent_Id(id);
-		System.out.println("allSubjictByparent_Id:"+allSubjictByparent_Id);
-		return allSubjictByparent_Id;
+	public int getCourseNameRepeat(String course_name) {
+		int courseNameRepeat = courseService.getCourseNameRepeat(course_name);
+		return courseNameRepeat;
+	}
+	@RequestMapping("/addVideo")
+	public String addVideo(Edu_course_Kpoint courseKpoint,HttpServletRequest request,int tid) {
+		course_KpointService.insertCourseKpoint(courseKpoint, tid);
+		return "redirect:/admin/course/chapte/"+courseKpoint.getId();
+	}
+	@ResponseBody
+	@RequestMapping("/readSchedule")
+	public String readSchedule(MultipartFile file,HttpServletRequest request) {
+		course_KpointService.readSchedule(file, request);
+		
+		return "";
+	}
+	@ResponseBody
+	@RequestMapping("/storeVideo")
+	public String storeVideo(@RequestParam("uploadfile")MultipartFile file,HttpServletRequest request) {
+		String pathRoot = request.getSession().getServletContext().getRealPath("video"); 
+		 String filename=file.getOriginalFilename();  
+		 if(!file.isEmpty()){  
+			 //生成uuid作为文件名称  
+			 String uuid = UUID.randomUUID().toString().replaceAll("-","");  
+			 filename=uuid+filename.substring(filename.lastIndexOf("."));
+			 System.out.println("filename:"+filename);
+			 File newfile=new File(pathRoot,filename);
+			 try {
+				 if(!newfile.exists()){
+					 newfile.createNewFile();
+				 }
+				 file.transferTo(newfile);
+			 } catch (Exception e) {
+				 e.printStackTrace();
+			 }  
+		 }  
+		return filename;
+	}
+	@ResponseBody
+	@RequestMapping("/uploadVideo")
+    public String uploadVideo(MultipartFile file ) {
+		
+		return "";
 	}
 	
 	@SuppressWarnings("deprecation")
