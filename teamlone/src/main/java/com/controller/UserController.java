@@ -255,7 +255,6 @@ public String getAction(HttpServletRequest request, HttpServletResponse response
 
 	map=initMap(request, map);
 	List<Users> list = userService.getlistAll(map);   
-
     for (int i = 0; i < list.size(); i++)    
     {    
         row = sheet.createRow((int) i + 1);    
@@ -268,35 +267,35 @@ public String getAction(HttpServletRequest request, HttpServletResponse response
         row.createCell((short) 4).setCellValue(stu.getShow_name()); 
     }    
     // 第六步，将文件存到指定位置    
-    try    
-    {    
-        FileOutputStream fout = new FileOutputStream("E:/Members.xls");    
-        wb.write(fout);    
-        fout.close();    
-    }    
-    catch (Exception e)    
-    {    
-        e.printStackTrace();    
-    }    
-    System.out.println("成功");
-//    OutputStream out = null;    
-//    try {        
-//        out = response.getOutputStream();    
-//        String fileName = "enroll.xls";// 文件名    
-//        response.setContentType("application/x-msdownload");    
-//        response.setHeader("Content-Disposition", "attachment; filename="    
-//                                                + URLEncoder.encode(fileName, "UTF-8"));    
-//        wb.write(out);    
-//    } catch (Exception e) {    
+//    try    
+//    {    
+//        FileOutputStream fout = new FileOutputStream("E:/Members.xls");    
+//        wb.write(fout);    
+//        fout.close();    
+//    }    
+//    catch (Exception e)    
+//    {    
 //        e.printStackTrace();    
-//    } finally {      
-//        try {       
-//            out.close();      
-//        } catch (IOException e) {      
-//            e.printStackTrace();    
-//        }      
-//    }
-	   
+//    }    
+
+    OutputStream out = null;    
+    try {        
+        out = response.getOutputStream();    
+        String fileName = "enroll.xls";// 文件名    
+        response.setContentType("application/x-msdownload");    
+        response.setHeader("Content-Disposition", "attachment; filename="    
+                                                + URLEncoder.encode(fileName, "UTF-8"));    
+        wb.write(out);    
+    } catch (Exception e) {    
+        e.printStackTrace();    
+    } finally {      
+        try {       
+            out.close();      
+        } catch (IOException e) {      
+            e.printStackTrace();    
+        }      
+    }
+  System.out.println("成功"); 
 	return "redirect:/admin/users/list";
 }    
    

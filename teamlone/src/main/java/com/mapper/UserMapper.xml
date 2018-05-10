@@ -83,6 +83,7 @@
 		select * from edu_user WHERE email =#{value}
 	</select>
 	<insert id="addUser" parameterType="Users">
-		insert into edu_user (mobile,email,password) values (#{mobile},#{email},#{password}) 
+		insert into edu_user (mobile,email,password,user_name,pic_img,last_system_time)
+		 values (#{mobile},#{email},#{password},#{user_name},#{pic_img},#{last_system_time}) 
 	</insert>
 </mapper>
